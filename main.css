@@ -12,6 +12,11 @@ html {
   width: 100%;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 /*
   This is the main content for the whole page (not the content with text and images!)
 */
@@ -93,6 +98,16 @@ html {
   padding: 0 0 0 13px; 
 }
 
+#header li a {
+  float: left;
+  display: block;
+  width: auto;
+  background: url("images/menu-right.png") no-repeat right top;
+  padding: 5px 13px 4px 0px;
+  text-decoration: none;
+  color: #B9C0CB;
+}
+
 #slogan {
   height: 70px;
   position: relative;
@@ -100,13 +115,19 @@ html {
   -moz-box-shadow:    5px 0px 5px #665433;
   -webkit-box-shadow: 5px 0px 5px #665433;
   box-shadow:         5px 0px 5px #665433;
+  
+
+}
+
+#slogan p {
   color: #6a6a6a;
   font-size: 16px;
   padding-left: 10px;
   padding-top: 15px;
+  margin: 0;
 }
 
-#real-content {
+#content-wrapper {
   height: 80%;
   position: relative;
   background-color: #e1f1d8;
@@ -117,10 +138,43 @@ html {
   -moz-box-shadow:    5px 0px 5px #665433;
   -webkit-box-shadow: 5px 0px 5px #665433;
   box-shadow:         5px 0px 5px #665433;
-  
   color: #2e2e2e;
   font-size: 14px;
-  padding-left: 10px;
-  padding-top: 3px;
-  margin-top: -2px;
+}
+
+#real-content {
+  padding: 10px 10px 20px 10px;
+  float: left;
+  width: 730px;
+}
+
+#sidebar-wrapper {
+  float: right;
+  width: 178px;
+  margin: 5px 15px 0px 0px;
+  padding:  10px 10px 20px 10px;
+}
+
+#sidebar-content {
+  padding:  5px 5px 5px 5px;
+  background-color: white;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -moz-box-shadow:    5px 0px 5px #665433;
+  -webkit-box-shadow: 5px 0px 5px #665433;
+  box-shadow:         5px 0px 5px #665433;
+  text-align: left;
+}
+
+#sidebar-content ul  {
+   list-style: none;
+   padding-bottom: 1em;
+   
+}
+
+#sidebar-content li {
+  display: block;
+  margin: 0;
+  padding: 5px 5px;
+  border-bottom: 1px solid #EEE;
 }
