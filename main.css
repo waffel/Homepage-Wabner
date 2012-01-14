@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;  
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+/*
+  This is the main content for the whole page (not the content with text and images!)
+*/
+#content {
+  height: 100%;
+  width: 100%;
+}
+
+/*
+  This is the div which places the background color on the page (gradient from top to bottom)
+*/
+#maindiv {
+  display: block;
+  height: 100%;
+  background-color: #50452e;
+  background: url(images/linear_bg_2.png);
+  background-repeat: repeat-x;
+  
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(100% 100% 90deg, #50452e, #e4d2ae );
+  
+  /* Safari 4-5, Chrome 1-9 */
+  /* -webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*) */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#50452e), to(#e4d2ae));
+  
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient( #e4d2ae,#50452e );
+  
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(#50452e, #e4d2ae);
+}
+
+/*
+  Main content div which defines the resolution of the content area
+*/
+#maincontent {
+  margin: auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 980px  !important;
+  height: 100%;
+  
+}
+
+
+/*
+  Header div which contains the header
+*/
+#header {
+  height: 100px;
+  position: relative;
+  background-color: #95ad6f;
+  border-top-right-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-box-shadow:    5px 0px 5px #586742;
+  -webkit-box-shadow: 5px 0px 5px #586742;
+  box-shadow:         5px 0px 5px #586742;
+}
+
+#header ul {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+  padding: 10px 10px 0;
+  list-style: none;
+  letter-spacing: -.05em;
+  text-transform: lowercase;
+  font-weight: bold;
+}
+
+#header li {
+  float: left;
+  background: url("images/menu-left.png") no-repeat left top;
+  margin: 0 1px 0 0;
+  padding: 0 0 0 13px; 
+}
+
+#slogan {
+  height: 70px;
+  position: relative;
+  background-color: #f5e8d1;
+  -moz-box-shadow:    5px 0px 5px #665433;
+  -webkit-box-shadow: 5px 0px 5px #665433;
+  box-shadow:         5px 0px 5px #665433;
+  color: #6a6a6a;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 15px;
+}
+
+#real-content {
+  height: 80%;
+  position: relative;
+  background-color: #e1f1d8;
+  border-bottom-right-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-box-shadow:    5px 0px 5px #665433;
+  -webkit-box-shadow: 5px 0px 5px #665433;
+  box-shadow:         5px 0px 5px #665433;
+  
+  color: #2e2e2e;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-top: 3px;
+  margin-top: -2px;
+}
