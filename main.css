@@ -10,6 +10,7 @@ body {
 html {
   height: 100%;
   width: 100%;
+  font: 0.80em/1.5em Cantarell,"Droid Sans","DejaVu Sans";
 }
 
 ul {
@@ -74,9 +75,11 @@ ul {
   -moz-border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   -moz-border-top-left-radius: 5px;
+  /*
   -moz-box-shadow:    5px 0px 5px #586742;
   -webkit-box-shadow: 5px 0px 5px #586742;
   box-shadow:         5px 0px 5px #586742;
+  */
 }
 
 #header ul {
@@ -87,7 +90,6 @@ ul {
   padding: 10px 10px 0;
   list-style: none;
   letter-spacing: -.05em;
-  text-transform: lowercase;
   font-weight: bold;
 }
 
@@ -105,17 +107,31 @@ ul {
   background: url("images/menu-right.png") no-repeat right top;
   padding: 5px 13px 4px 0px;
   text-decoration: none;
-  color: #B9C0CB;
+  color: #6A6D66;
 }
+
+#header .current_page_item {
+  background-position: 0 -220px !important;
+  border-width: 0 !important;
+  color: #252D3B !important;
+}
+
+#header .current_page_item a {
+  background-position: 100% -220px !important;
+  border-width: 0 !important;
+  color: #252D3B !important;
+}
+
 
 #slogan {
   height: 70px;
   position: relative;
   background-color: #f5e8d1;
+  /*
   -moz-box-shadow:    5px 0px 5px #665433;
   -webkit-box-shadow: 5px 0px 5px #665433;
   box-shadow:         5px 0px 5px #665433;
-  
+  */
 
 }
 
@@ -135,9 +151,12 @@ ul {
   -moz-border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   -moz-border-bottom-left-radius: 5px;
+  border-top: 1px solid #AAA;
+  /*
   -moz-box-shadow:    5px 0px 5px #665433;
   -webkit-box-shadow: 5px 0px 5px #665433;
   box-shadow:         5px 0px 5px #665433;
+  */
   color: #2e2e2e;
   font-size: 14px;
 }
