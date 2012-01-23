@@ -144,8 +144,8 @@ ul {
 }
 
 #content-wrapper {
-  height: 80%;
-  position: relative;
+  width: 100%;
+  position: absolute;
   background-color: #e1f1d8;
   border-bottom-right-radius: 5px;
   -moz-border-bottom-right-radius: 5px;
