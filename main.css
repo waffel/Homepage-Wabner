@@ -127,6 +127,7 @@ ul {
   height: 70px;
   position: relative;
   background-color: #f5e8d1;
+  
   /*
   -moz-box-shadow:    5px 0px 5px #665433;
   -webkit-box-shadow: 5px 0px 5px #665433;
@@ -135,12 +136,12 @@ ul {
 
 }
 
-#slogan p {
+#slogan_text {
   color: #6a6a6a;
-  font-size: 16px;
-  padding-left: 10px;
+  padding-left: 60px;
   padding-top: 15px;
   margin: 0;
+  font: italic 20px "Georgia Italic";
 }
 
 #content-wrapper {
@@ -165,6 +166,16 @@ ul {
   padding: 10px 10px 20px 10px;
   float: left;
   width: 660px;
+}
+
+#main_image {
+  padding-left: 75px;
+  padding-top: 40px;
+}
+
+#main_text {
+  padding-left: 100px;
+  padding-top: 10px;
 }
 
 #sidebar-wrapper {
