@@ -82,6 +82,28 @@ ul {
   */
 }
 
+#header a {
+  text-decoration: none; 
+}
+
+
+#logo-text1 {
+  padding-left: 20px; 
+  padding-top: 25px; 
+  color: #6A6D66; 
+  font-size: 1.3em; 
+  font-style:italic;
+}
+
+
+#logo-text2 {
+  padding-left: 70px; 
+  padding-top: 10px; 
+  color: #6A6D66; 
+  font-size: 1.3em; 
+  font-style:italic;
+}
+
 #header ul {
   position: absolute;
   margin: 0;
@@ -106,7 +128,6 @@ ul {
   width: auto;
   background: url("images/menu-right.png") no-repeat right top;
   padding: 5px 13px 4px 0px;
-  text-decoration: none;
   color: #6A6D66;
 }
 
@@ -142,7 +163,7 @@ ul {
   padding-top: 15px;
   margin: 0;
   font-family: 'Allura', cursive;
-  font-size: 20px;
+  font-size: 21px;
 }
 
 #content-wrapper {
