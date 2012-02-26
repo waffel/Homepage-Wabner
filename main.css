@@ -90,8 +90,8 @@ ul {
 #logo-text1 {
   padding-left: 20px; 
   padding-top: 25px; 
-  color: #6A6D66; 
-  font-size: 1.3em; 
+  color: #51534E;
+  font-size: 17px; 
   font-style:italic;
 }
 
@@ -99,8 +99,8 @@ ul {
 #logo-text2 {
   padding-left: 70px; 
   padding-top: 10px; 
-  color: #6A6D66; 
-  font-size: 1.3em; 
+  color: #51534E; 
+  font-size: 17px; 
   font-style:italic;
 }
 
@@ -128,7 +128,7 @@ ul {
   width: auto;
   background: url("images/menu-right.png") no-repeat right top;
   padding: 5px 13px 4px 0px;
-  color: #6A6D66;
+  color: #51534E;
 }
 
 #header .current_page_item {
@@ -162,8 +162,8 @@ ul {
   padding-left: 60px;
   padding-top: 15px;
   margin: 0;
-  font-family: 'Allura', cursive;
-  font-size: 21px;
+  font-family: 'Parisienne', cursive;
+  font-size: 20px;
 }
 
 #content-wrapper {
@@ -192,7 +192,7 @@ ul {
 
 #main_image {
   padding-left: 75px;
-  padding-top: 40px;
+  padding-top: 55px;
 }
 
 #main_text {
@@ -213,8 +213,8 @@ ul {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -moz-box-shadow:    5px 0px 5px #665433;
-  -webkit-box-shadow: 5px 0px 5px #665433;
-  box-shadow:         5px 0px 5px #665433;
+  -webkit-box-shadow: 5px 5px 5px #665433;
+  box-shadow:         5px 5px 5px #665433;
   text-align: left;
 }
 
