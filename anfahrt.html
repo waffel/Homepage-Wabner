@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+   <link rel="stylesheet" href="main.css"/>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'/>
+   <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'/>
+   <title>Praxis f&uuml;r Osteopthie und Kinesiologie Madeleine Wabner - Heilpraktikerin</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <script src="OpenLayers.js"></script>
+   <script src="OpenStreetMap.js"></script>
+   <script type="text/javascript">
+     var map; 
+     function showMap(){ 
+       map = new OpenLayers.Map("map", { 
+          maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34), 
+                     numZoomLevels: 19, 
+                     maxResolution: 156543.0399, 
+                     units: "m", 
+                     projection: new OpenLayers.Projection("EPSG:900913"), 
+                     displayProjection: new OpenLayers.Projection("EPSG:4326") 
+          }); 
+       var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik (updated weekly)"); 
+       var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home"); 
+       map.addLayers([layerMapnik,layerTah]);
+       map.setCenter(new OpenLayers.LonLat(12.39446,51.3078).transform(new OpenLayers.Projection("EPSG:4326"), 
+                     new OpenLayers.Projection("EPSG:900913")), 16); 
+       map.addLayer(new OpenLayers.Layer.Markers()); 
+       var marker = new OpenLayers.Marker(map.getCenter()); 
+       marker.events.register("mousedown", marker, 
+               function(evt) { alert("Praxis Wabner\nRübezahlweg 24, 04277 Leipzig"); 
+                               OpenLayers.Event.stop(evt); 
+                             }); 
+       map.layers[map.layers.length-1].addMarker(marker); 
+     } 
+    </script>
+  </head>
+  <body onload="showMap();">
+   <style type="text/css">.olControlAttribution { bottom: 3px!important; }</style>
+   <div id="content">
+    <div id="maindiv">
+      <div id="maincontent">
+        <div id="header">
+          <a href="index.html">
+            <div id="logo-text1">
+            Praxis f&uuml;r Osteopathie und Kinesiologie
+            </div>
+            <div id="logo-text2">
+             Madeleine Wabner - Heilpraktikerin
+            </div>
+          </a>
+          <ul>
+            <li>
+              <a href="index2.html">Start</a>
+            </li>
+            <li>
+              <a href="osteopathie.html">Osteopathie</a>
+            </li>
+            <li>
+              <a href="kinesiologie.html">Kinesiologie</a>
+            </li>
+            <li>
+                <a href="about_me.html">&Uuml;ber mich</a>
+            </li>
+            <li>
+              <a href="praxis.html">Praxis</a>
+            </li>
+            <li>
+              <a href="kosten.html">Kosten</a>
+            </li>
+          </ul>
+        </div>
+        <div id="slogan" >
+          <div id="slogan_text" style="width: 520px;"><!-- den style pro seite aendern! -->
+            <div style="text-align: left;">"Wer keine Zeit f&uuml;r seine Gesundheit hat,</div>
+            <div style="text-align: right;">wird eines Tages Zeit haben müssen, krank zu sein" (unbekannt)</div>
+          </div>
+        </div>
+        <div id="content-wrapper">
+          <div id="real-content">
+     
+            <div id="map" style="width:500px;height:400px;"></div>
+      
+          </div>
+          <div id="sidebar-wrapper">
+            <div id="sidebar-content">
+              <ul>
+                <li>
+                <p><b>Kontakt:</b></p>
+                Praxis f&uuml;r Osteopathie und Kinesiologie<br/><br/>
+                Madeleine Wabner<br/>
+                R&uuml;bezahlweg 24<br/>
+                04277 Leipzig<br/>
+                <p>Telefon: 0341 118877</p>
+                <p>Email: <a href="mailto:kontakt@praxis-wabner.de">kontakt@praxis-wabner.de</a></p>
+                </li>
+                <li>
+                <p><b>Termine:</b></p>
+                nach Vereinbarung
+                </li>
+                <li>
+                  <p>Anfahrt:</p>
+                  Karte<br/>
+                  <a href="anfahrt.html">
+                    <img src="images/karte.png" width="230px" height="154px" />
+                  </a>
+                  <div id="card_click">
+                  <b>
+                  Bitte klicken Sie auf die Karte<br/>
+                  f&uuml;r Interaktive Ansicht
+                  </b>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="footer">
+            <div id="footer_text">
+              Copyright (c) 2012 Madeleine Wabner &nbsp; <a href="impressum.html">Impressum</a>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </body>
+</html>
+

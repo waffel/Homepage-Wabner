@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+und <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -8,35 +8,40 @@
     <title>OpenLayers Basic OSM Example</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="OpenLayers.js"></script>
-    <script type="text/javascript">
-        var map, layer;
-        function init(){
-            map = new OpenLayers.Map( 'map');
-            layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            map.addLayer(layer);
-            map.setCenter(
-            new OpenLayers.LonLat(12.394751, 51.307871).transform(
-                    new OpenLayers.Projection("EPSG:4326"),
-                    map.getProjectionObject()
-			    ), 17
-            );    
-        }
-    </script>
-  </head>
-  <body onload="init()">
-    <h1 id="title">Basic OSM Example</h1>
+     <script src="OpenStreetMap.js"></script>
+     <script type="text/javascript">
+     var map; 
+     function showMap(){ 
+       map = new OpenLayers.Map("map", { 
+          maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34), 
+                     numZoomLevels: 19, 
+                     maxResolution: 156543.0399, 
+                     units: "m", 
+                     projection: new OpenLayers.Projection("EPSG:900913"), 
+                     displayProjection: new OpenLayers.Projection("EPSG:4326") 
+          }); 
+       var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik (updated weekly)"); 
+       var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home"); 
+       map.addLayers([layerMapnik,layerTah]);
+       map.setCenter(new OpenLayers.LonLat(12.39446,51.3078).transform(new OpenLayers.Projection("EPSG:4326"), 
+                     new OpenLayers.Projection("EPSG:900913")), 16); 
+       map.addLayer(new OpenLayers.Layer.Markers()); 
+       var marker = new OpenLayers.Marker(map.getCenter()); 
+       marker.events.register("mousedown", marker, 
+               function(evt) { alert("Praxis Wabner\nRübezahlweg 24, 04277 Leipzig"); 
+                               OpenLayers.Event.stop(evt); 
+                             }); 
+       map.layers[map.layers.length-1].addMarker(marker); 
+     } 
+       </script>
+      </head>
+  <body onload="showMap();">
+   <style type="text/css">.olControlAttribution { bottom: 3px!important; }</style>
+   
+   
+    <div id="map" style="width:500px;height:400px;"></div>
+    
 
-    <div id="tags">
-        openstreetmap basic
-    </div>
-
-    <div id="shortdesc">Show a Simple OSM Map</div>
-
-    <div id="map" class="smallmap" style="width: 512px; height: 256px; border: 1px solid #CCC;"></div>
-
-    <div id="docs">
-        <p>This example shows a very simple OSM layout with minimal controls.</p> 
-    </div>
   </body>
 </html>
 
