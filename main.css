@@ -5,12 +5,24 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;  
+   
 }
 
 html {
-  height: 100%;
+  height: 102%;
   width: 100%;
   font: 0.80em/1.5em Cantarell,"Droid Sans","DejaVu Sans";
+  background-color: #50452e;
+  background: url(images/linear_bg_2.png);
+  background-repeat: repeat-x;
+  
+  background:-moz-linear-gradient(100% 100% 90deg, #50452e, #e4d2ae );
+  
+  background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#50452e), to(#e4d2ae));
+  
+  background:-webkit-linear-gradient(top, #e4d2ae,#50452e );
+  
+  background:-moz-linear-gradient(top,#50452e, #e4d2ae);
 }
 
 ul {
@@ -32,22 +44,6 @@ ul {
 #maindiv {
   display: block;
   height: 100%;
-  background-color: #50452e;
-  background: url(images/linear_bg_2.png);
-  background-repeat: repeat-x;
-  
-  /* Firefox 3.6+ */
-  background: -moz-linear-gradient(100% 100% 90deg, #50452e, #e4d2ae );
-  
-  /* Safari 4-5, Chrome 1-9 */
-  /* -webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*) */
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#50452e), to(#e4d2ae));
-  
-  /* Safari 5.1+, Chrome 10+ */
-  background: -webkit-linear-gradient( #e4d2ae,#50452e );
-  
-  /* Opera 11.10+ */
-  background: -o-linear-gradient(#50452e, #e4d2ae);
 }
 
 /*
