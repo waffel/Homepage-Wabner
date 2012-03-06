@@ -27,9 +27,13 @@
        var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home"); 
        map.addLayers([layerMapnik,layerTah]);
        map.setCenter(new OpenLayers.LonLat(12.39446,51.3078).transform(new OpenLayers.Projection("EPSG:4326"), 
-                     new OpenLayers.Projection("EPSG:900913")), 16); 
-       map.addLayer(new OpenLayers.Layer.Markers()); 
-       var marker = new OpenLayers.Marker(map.getCenter()); 
+			       new OpenLayers.Projection("EPSG:900913")), 16);
+       var markers = new OpenLayers.Layer.Markers("Markers");
+       map.addLayer(new OpenLayers.Layer.Markers());
+       var size = new OpenLayers.Size(64,64);
+       var offset = new OpenLayers.Pixel(-(size.w/2), -size.h+2);
+       var markerIcon = new OpenLayers.Icon('img/marker.png', size, offset);
+       var marker = new OpenLayers.Marker(map.getCenter(),markerIcon); 
        marker.events.register("mousedown", marker, 
                function(evt) { alert("Praxis Wabner\nRübezahlweg 24, 04277 Leipzig"); 
                                OpenLayers.Event.stop(evt); 
