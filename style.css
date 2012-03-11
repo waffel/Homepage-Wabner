@@ -30,10 +30,10 @@ div.olLayerDiv {
 }
 .olControlAttribution {
     font-size: smaller; 
-    right: 3px; 
-    bottom: 4.5em; 
+    bottom: 0em; 
     position: absolute; 
     display: block;
+    padding-top: 100px;
 }
 .olControlScale {
     right: 3px;
