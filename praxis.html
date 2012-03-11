@@ -40,8 +40,8 @@
     	 var icon = new OpenLayers.Icon('img/marker.png', size, offset);
     	 feature = new OpenLayers.Feature(markersLayer, center);
     	 feature.closeBox = true;
-    	 feature.data.popupContentHTML = '<div style="background-color:white;">'
-    	        + 'Praxis Wabner, R&uuml;bezahlweg 24, 04277 Leipzig' + '</div>';
+    	 feature.data.popupContentHTML = '<div style="background-color:white; padding-left: 5px;">'
+    	        + '<b>Praxis Wabner</b><p>R&uuml;bezahlweg 24<br/>04277 Leipzig</p>' + '</div>';
     	 marker = new OpenLayers.Marker(center, icon);
     	 marker.feature = feature;
     	 
@@ -120,7 +120,14 @@
               Madeleine Wabner<br/>
               R&uuml;bezahlweg 24<br/>
               04277 Leipzig<br/>
-              <p>Telefon: 0341 118877</p>
+              <p>
+                <table style="border-spacing: 0px;"><tr>
+                <td>Telefon:</td><td>0341 12575652</td>
+                </tr><tr>
+                <td>Handy:</td><td>0176 99639871</td>
+                </tr>
+                </table>
+              </p>
               <p>Email: <a href="mailto:kontakt@praxis-wabner.de">kontakt@praxis-wabner.de</a></p>
               </li>
               <li>
