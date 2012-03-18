@@ -74,6 +74,11 @@ ul {
   text-decoration: none; 
 }
 
+#logo-bild {
+  float: left;
+  padding-left: 10px;
+  padding-top:14px; 
+}
 
 #logo-text1 {
   padding-left: 20px; 
@@ -81,12 +86,13 @@ ul {
   color: #51534E;
   font-size: 17px; 
   font-style:italic;
+  float:left;
 }
 
 
 #logo-text2 {
-  padding-left: 70px; 
-  padding-top: 10px; 
+  padding-left: 112px; 
+  padding-top: 50px; 
   color: #51534E; 
   font-size: 17px; 
   font-style:italic;
