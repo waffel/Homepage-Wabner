@@ -19,7 +19,7 @@ Bindegewebe, Nervensystem, Organe, Schmerzen, Gleichgewicht, Anatomie, Physiolog
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#clickme').click(function() {
-	  $('#clickme').text(($('#clickme').text() == 'Mehr') ? 'Weniger' : 'Mehr');
+	  $('#clickme').text(($('#clickme').text() == 'Weiterlesen ...') ? 'Weniger' : 'Weiterlesen ...');
 	  $('#more').slideToggle('slow', function() {});
 	});
 });
@@ -37,13 +37,13 @@ $(document).ready(function() {
         <span id="logo-bild">
           <img src="images/logo-silbern.gif"/>
         </span>
-        <a href="index.html">
-          <div id="logo-text1">
+        <a id="logo-link" href="index.html">
+          <span id="logo-text1">
           Praxis f&uuml;r Osteopathie und Kinesiologie
-          </div>
-          <div id="logo-text2">
+          </span>
+          <span id="logo-text2">
            Madeleine Wabner - Heilpraktikerin
-          </div>
+          </span>
         </a>
         <ul>
           <li>
@@ -82,8 +82,8 @@ $(document).ready(function() {
            und Funktion im K&ouml;rper. Muskeln, Knochen, Bindegewebe, Nervensystem und Organe sind miteinander
            verbunden und stehen in Wechselbeziehung zueinander. Hat ein System ein Problem (Bewegungseinschr&auml;nkung,
            verringerte Durchblutung etc.) so wirkt sich das bald auf alle anderen Systeme aus.
-           <p>
            <h5>Beispiel:</h5>
+           <p>
            Wenn jemand Schmerzen an der Schulter hat, kann die Ursache an ganz anderer Stelle sein, z.B. eine
            "Unbeweglichkeit" der Leber oder eine Verletzung am Kn&ouml;chel. Der Osteopath sucht und findet diese
            (Bewegungs-) Einschr&auml;nkungen, um so wieder das Gleichgewicht herzustellen, die Beweglichkeit und
@@ -92,81 +92,76 @@ $(document).ready(function() {
            <p>
            Wissenschaftlich betrachtet beruht die Osteopathie auf Kenntnissen der Anatomie, Physiologie und Biochemie.
            </p>
-           <p>
            <h4>Behandlungsschwerpunkte der Osteopathie</h4>
-           </p>
 
-<a href="#" id="clickme">Mehr</a>
-<div id="more" style="display: none;">
-           <p>
-           <h5>Bewegungsapparat</h5>
-           <ul style="padding-left: 15px;">
-            <li>Wirbels&auml;ulenerkrankungen z.B. Bandscheibenvorfall</li>
-            <li>Arthrose</li>
-            <li>R&uuml;ckenschmerzen allgemein</li>
-            <li>Haltungst&ouml;rungen</li>
-            <li>Beckenschiefstand</li>
-            <li>Ischiasbeschwerden</li>
-            <li>Nackenschmerzen</li>
-            <li>Knie -, Fu&szlig; - und Schulterprobleme</li>
-            <li>Skoliosen (Wirbels&auml;ulenverkr&uuml;mmungen) usw.</li>
-            <li>Nachbehandlung von Schleudertraumen</li>
-           </ul>
-           <h5>Kopfbereich</h5>
-           <ul style="padding-left: 15px;">
-            <li>Migr&auml;ne</li>
-            <li>Spannungskopfschmerz</li>
-            <li>Schwindel</li>
-            <li>Kiefergelenksbeschwerden (Knirschen, Kauprobleme)</li>
-            <li>Tinnitus</li>
-            <li>Mittelohrentz&uuml;ndung</li>
-            <li>Nasennebenh&ouml;hlenentz&uuml;ndung</li>
-           </ul>
-           <h5>Verdauungsbeschwerden</h5>
-           <ul style="padding-left: 15px;">
-             <li>Verstopfung</li>
-             <li>Probleme mit der Leber und Gallenblase</li>
-             <li>Bl&auml;hungen</li>
-             <li>Aufsto&szlig;en</li>
-             <li>Sodbrennen</li>
-           </ul>
-           <h5>Gyn&auml;kologie und Urologie</h5>
-           <ul style="padding-left: 15px;">
-             <li>schmerzhafte Periode</li>
-             <li>chronische Blasenentz&uuml;ndung</li>
-             <li>Spannung im Beckenboden</li>
-             <li>Organsenkung</li>
-             <li>Nierenprobleme</li>
-           </ul>
-           <h5>Schwangerschaft und Geburt</h5>
-           <ul style="padding-left: 15px;">
-             <li>Begleitung w&auml;hrend der Schwangerschaft (Beckenbeweglichkeit der Mutter f&ouml;rdern, R&uuml;ckenprobleme behandeln)</li>
-             <li>Geburtsvorbereitung</li>
-             <li>nach der Geburt (Beschwerden bei Mutter und Kind)</li>
-           </ul>
-           <h5>Probleme bei Kindern</h5>
-           <ul style="padding-left: 15px;">
-             <li>Schreikinder</li>
-             <li>Drei-Monats-Koliken</li>
-             <li>Schlafst&ouml;rungen</li>
-             <li>Bauchschmerzen</li>
-             <li>Schreihals</li>
-             <li>verst&auml;rktes Spucken</li>
-             <li>Verhaltens- und Lernst&ouml;rungen</li>
-           </ul>
-           <h5>Atemwegserkrankungen</h5>
-           <ul style="padding-left: 15px;">
-             <li>chronische Bronchitis, Asthma</li>
-             <li>rezidivierende Infekte</li>
-           </ul>
-           <h5>Herz</h5>
-           <ul style="padding-left: 15px;">
-             <li>funktionelle Herzbeschwerden</li>
-           </ul>
-           </p>
-</div>
-
+           <a href="#" id="clickme" style="color: #51534E">Weiterlesen ...</a>
+           <div id="more" style="display: none;">
+             <h5>Bewegungsapparat</h5>
+             <ul style="padding-left: 15px;">
+              <li>Wirbels&auml;ulenerkrankungen z.B. Bandscheibenvorfall</li>
+              <li>Arthrose</li>
+              <li>R&uuml;ckenschmerzen allgemein</li>
+              <li>Haltungst&ouml;rungen</li>
+              <li>Beckenschiefstand</li>
+              <li>Ischiasbeschwerden</li>
+              <li>Nackenschmerzen</li>
+              <li>Knie -, Fu&szlig; - und Schulterprobleme</li>
+              <li>Skoliosen (Wirbels&auml;ulenverkr&uuml;mmungen) usw.</li>
+              <li>Nachbehandlung von Schleudertraumen</li>
+             </ul>
+             <h5>Kopfbereich</h5>
+             <ul style="padding-left: 15px;">
+              <li>Migr&auml;ne</li>
+              <li>Spannungskopfschmerz</li>
+              <li>Schwindel</li>
+              <li>Kiefergelenksbeschwerden (Knirschen, Kauprobleme)</li>
+              <li>Tinnitus</li>
+              <li>Mittelohrentz&uuml;ndung</li>
+              <li>Nasennebenh&ouml;hlenentz&uuml;ndung</li>
+             </ul>
+             <h5>Verdauungsbeschwerden</h5>
+             <ul style="padding-left: 15px;">
+               <li>Verstopfung</li>
+               <li>Probleme mit der Leber und Gallenblase</li>
+               <li>Bl&auml;hungen</li>
+               <li>Aufsto&szlig;en</li>
+               <li>Sodbrennen</li>
+             </ul>
+             <h5>Gyn&auml;kologie und Urologie</h5>
+             <ul style="padding-left: 15px;">
+               <li>schmerzhafte Periode</li>
+               <li>chronische Blasenentz&uuml;ndung</li>
+               <li>Spannung im Beckenboden</li>
+               <li>Organsenkung</li>
+               <li>Nierenprobleme</li>
+             </ul>
+             <h5>Schwangerschaft und Geburt</h5>
+             <ul style="padding-left: 15px;">
+               <li>Begleitung w&auml;hrend der Schwangerschaft (Beckenbeweglichkeit der Mutter f&ouml;rdern, R&uuml;ckenprobleme behandeln)</li>
+               <li>Geburtsvorbereitung</li>
+               <li>nach der Geburt (Beschwerden bei Mutter und Kind)</li>
+             </ul>
+             <h5>Probleme bei Kindern</h5>
+             <ul style="padding-left: 15px;">
+               <li>Schreikinder</li>
+               <li>Drei-Monats-Koliken</li>
+               <li>Schlafst&ouml;rungen</li>
+               <li>Bauchschmerzen</li>
+               <li>Schreihals</li>
+               <li>verst&auml;rktes Spucken</li>
+               <li>Verhaltens- und Lernst&ouml;rungen</li>
+             </ul>
+             <h5>Atemwegserkrankungen</h5>
+             <ul style="padding-left: 15px;">
+               <li>chronische Bronchitis, Asthma</li>
+               <li>rezidivierende Infekte</li>
+             </ul>
+             <h5>Herz</h5>
+             <ul style="padding-left: 15px;">
+               <li>funktionelle Herzbeschwerden</li>
+             </ul>
            </div>
+         </div>
         </div>
         <div id="sidebar-wrapper">
           <div id="sidebar-content">
@@ -177,14 +172,13 @@ $(document).ready(function() {
               Madeleine Wabner<br/>
               R&uuml;bezahlweg 24<br/>
               04277 Leipzig<br/>
-              <p>
-                <table style="border-spacing: 0px;"><tr>
-                <td>Telefon:</td><td>0341 12575652</td>
-                </tr><tr>
-                <td>Handy:</td><td>0176 61907742</td>
-                </tr>
-                </table>
-              </p>
+              <p/>
+              <table style="border-spacing: 0px;"><tr>
+              <td>Telefon:</td><td>0341 12575652</td>
+              </tr><tr>
+              <td>Handy:</td><td>0176 61907742</td>
+              </tr>
+              </table>
               <p>Email: <a href="mailto:kontakt@praxis-wabner.de">kontakt@praxis-wabner.de</a></p>
               </li>
               <li>

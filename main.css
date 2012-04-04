@@ -87,6 +87,7 @@ ul {
   font-size: 17px; 
   font-style:italic;
   float:left;
+  display: block;
 }
 
 
@@ -96,6 +97,7 @@ ul {
   color: #51534E; 
   font-size: 17px; 
   font-style:italic;
+  display: block;
 }
 
 #header ul {
