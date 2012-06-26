@@ -4,8 +4,9 @@
  <head>
   <link rel="stylesheet" href="main.css"/>
   <link rel="stylesheet" href="style.css"/>
-  <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'/>
-  <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'/>
+  <link href='http://fonts.googleapis.com/css?family=Allura' rel="stylesheet" type="text/css" media="screen"/>
+  <link href='http://fonts.googleapis.com/css?family=Parisienne' rel="stylesheet" type="text/css" media="screen"/>
+  <link href="css/prettyPhoto.css" type="text/css" media="screen" rel="stylesheet" title="prettyPhoto main stylesheet" charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="description" content="Praxis in Leipzig Marienbrunn für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
   <meta name="author" content="Madeleine Wabner"/>
@@ -25,6 +26,8 @@
   <title>Die Praxis - Praxis f&uuml;r Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
+	<script src="jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
   <script src="OpenLayers.js" type="text/javascript"></script>
   <script src="OpenStreetMap.js" type="text/javascript"></script>
   <script type="text/javascript">
@@ -133,6 +136,23 @@
            Sie erreichen die Praxis mit den Strassenbahnlinien 10 oder 16, Haltestelle "Triftweg" oder 
            "An der M&auml;rchenwiese". Von dort sind es ca. 7 Minuten Fu&szlig;weg bis zur Praxis.
            </p>
+            <!-- images -->
+            <a rel="prettyPhoto[pp_gal]" href="images/praxis-1.png" title=""><img class="prettyPhoto" src="images/praxis-1-thumb.png" alt=""/></a>
+            <a rel="prettyPhoto[pp_gal]" href="images/praxis-2.png" title=""><img class="prettyPhoto" src="images/praxis-2-thumb.png" alt=""/></a>
+            <a rel="prettyPhoto[pp_gal]" href="images/praxis-3.png" title=""><img class="prettyPhoto" src="images/praxis-3-thumb.png" alt=""/></a>
+            <a rel="prettyPhoto[pp_gal]" href="images/praxis-4.png" title=""><img class="prettyPhoto" src="images/praxis-4-thumb.png" alt=""/></a>
+           <script type="text/javascript">
+        	   $(document).ready(function(){
+        		    $("a[rel^='prettyPhoto']").prettyPhoto({
+        		    	theme: 'pp_default',
+        		    	social_tools: false,
+        		    	slideshow: false,
+        		    	inline_markup: '',
+        		    	overlay_gallery: false
+        		  });
+        	 });
+           </script>
+           
            <h5>interaktive Karte:</h5>
            <div id="map" style="width:500px;height:400px;"></div>
          </div>

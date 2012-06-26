@@ -253,3 +253,11 @@ ul {
   color: black;
   text-decoration: none;
 }
+
+.prettyPhoto {
+   border: 2px solid black; 
+}
+
+.prettyPhoto:hover {
+   border: 2px solid white; 
+}
