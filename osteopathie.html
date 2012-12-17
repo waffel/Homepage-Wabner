@@ -19,23 +19,14 @@ Bindegewebe, Nervensystem, Organe, Schmerzen, Gleichgewicht, Anatomie, Physiolog
 <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'/>
 <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'/>
 <title>Osteopathie - Praxis f&uuml;r Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin</title>
+<script type="text/javascript" charset="UTF-8" src="jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
- // Add a script element as a child of the body
- function downloadJSAtOnload() {
-   var jquery = document.createElement("script");
-   jquery.src = "jquery-1.7.2.min.js";
-   document.body.appendChild(jquery);
-   var osteopathie = document.createElement("script");
-   osteopathie.src = "osteopathie.js";
-   document.body.appendChild(osteopathie);
- }
-
- // Check for browser support of event handling capability
- if (window.addEventListener)
- window.addEventListener("load", downloadJSAtOnload, false);
- else if (window.attachEvent)
- window.attachEvent("onload", downloadJSAtOnload);
- else window.onload = downloadJSAtOnload;
+ $(document).ready(function() {
+	$('#clickme').click(function() {
+	  $('#clickme').text(($('#clickme').text() == 'Weiterlesen ...') ? 'Weniger' : 'Weiterlesen ...');
+	  $('#more').slideToggle('slow', function() {});
+	});
+});
 </script>
 </head>
 <body>
