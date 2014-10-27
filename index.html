@@ -19,8 +19,40 @@ Schwangerschaft, Kopfschmerz"/>
 <meta name="DC.rights" content="Alle Rechte liegen beim Autor"/>
 <meta name="google-site-verification" content="HseNLUcGk6U-Aac3VSPkT8zYDLWkcDiNvCUb2QfopLs" />
 <link rel="stylesheet" href="main.css"/>
-<link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'/>
-<link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'/>
+<script>
+(function(){
+  function addFont() {
+     console.log('add font ...');
+     var style = document.createElement('style');
+     style.rel = 'stylesheet';
+     document.head.appendChild(style);
+     style.textContext = localStorage.sourceParisienne;
+  }
+  console.log('loading');
+  try {
+    if (localStorage.sourceParisienne) {
+      // The font is in localStorage, we can load it directly
+      addFont();
+    } else {
+      // loading asynchon
+      var request = new XMLHttpRequest();
+      request.open('GET', 'css/parisienne.css', true);
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          console.log('loaded css');
+
+          localStorage.sourceParisienne = request.responseText;
+          console.log(localStorage.sourceParisienne);
+          addFont();
+        }
+      }
+      request.send();
+   }
+  } catch (ex) {
+    console.log(ex);
+  }
+}());
+</script>
 <title>Start - Praxis f&uuml;r Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin</title>
 </head>
 <body>
