@@ -18,40 +18,9 @@ Schwangerschaft, Kopfschmerz"/>
 <meta name="DC.contributor" content="Service"/>
 <meta name="DC.rights" content="Alle Rechte liegen beim Autor"/>
 <meta name="google-site-verification" content="HseNLUcGk6U-Aac3VSPkT8zYDLWkcDiNvCUb2QfopLs" />
-<link rel="stylesheet" href="main.css"/>
 <script>
-(function(){
-  function addFont() {
-     console.log('add font ...');
-     var style = document.createElement('style');
-     style.rel = 'stylesheet';
-     document.head.appendChild(style);
-     style.textContext = localStorage.sourceParisienne;
-  }
-  console.log('loading');
-  try {
-    if (localStorage.sourceParisienne) {
-      // The font is in localStorage, we can load it directly
-      addFont();
-    } else {
-      // loading asynchon
-      var request = new XMLHttpRequest();
-      request.open('GET', 'css/parisienne.css', true);
-      request.onload = function() {
-        if (request.status >= 200 && request.status < 400) {
-          console.log('loaded css');
-
-          localStorage.sourceParisienne = request.responseText;
-          console.log(localStorage.sourceParisienne);
-          addFont();
-        }
-      }
-      request.send();
-   }
-  } catch (ex) {
-    console.log(ex);
-  }
-}());
+!function(){function a(a){var b=document.createElement("style");b.rel="stylesheet",document.head.appendChild(b),b.textContent=a}var b="sourceParisienne";try{if(localStorage[b])a(localStorage[b]);else{var c=new XMLHttpRequest;c.open("GET","css/parisienne.css",!0),c.onload=function(){c.status>=200&&c.status<400&&(localStorage[b]=c.responseText,a(c.responseText))},c.send()}}catch(d){}}();
+!function(){function a(a){var b=document.createElement("style");b.rel="stylesheet",document.head.appendChild(b),b.textContent=a}var b="sourceMain";try{if(localStorage[b])a(localStorage[b]);else{var c=new XMLHttpRequest;c.open("GET","main.css",!0),c.onload=function(){c.status>=200&&c.status<400&&(localStorage[b]=c.responseText,a(c.responseText))},c.send()}}catch(d){}}();
 </script>
 <title>Start - Praxis f&uuml;r Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin</title>
 </head>
@@ -61,7 +30,7 @@ Schwangerschaft, Kopfschmerz"/>
     <div id="maincontent">
       <div id="header">
         <span id="logo-bild">
-          <img src="images/logo-silbern.gif"/>
+          <img src="images/logo-silbern.gif" width="65" height="66"/>
         </span>
         <a href="index.html">
           <span id="logo-text1" itemscope itemtype="http://data-vocabulary.org/Organization">
@@ -101,7 +70,7 @@ Schwangerschaft, Kopfschmerz"/>
       <div id="content-wrapper">
         <div id="real-content">
          <div id="main_image">
-            <img src="images/startbild.png" alt="Startbild"/>
+            <img src="images/startbild.png" alt="Startbild" width="529" height="405"/>
          </div>
           <p><center style="padding-top: 20px;">Herzlich Willkommen</center></p>
          <div id="main_text">
