@@ -9,21 +9,23 @@
   <link rel="stylesheet" href="theme/default/style.css"/>
   <link href="css/prettyPhoto.css" type="text/css" media="screen" rel="stylesheet" title="prettyPhoto main stylesheet" charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="description" content="Praxis in Leipzig Marienbrunn für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
+  <meta name="description" content="Praxis in Machern für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
   <meta name="author" content="Madeleine Wabner"/>
-  <meta name="keywords" content="Anfahrt, Parkplatz, Straßenbahn, Fußweg, Leipzig, Marienbrunn, Connewitz, Südvorstadt, Lösnig, Dölitz, Makkleeberg, Großzoscher, Kleinzschocher, Schleußig"/>
-  <meta name="DC.title" content="Praxis in Leipzig Marienbrunn für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
+  <meta name="keywords" content="Anfahrt, Parkplatz, Straßenbahn, Fußweg, Machern, Wurzen, Leipzig"/>
+  <meta name="DC.title" content="Praxis in Machern für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
   <meta name="DC.creator" content="Madeleine Wabner"/>
-  <meta name="DC.subject" content="Praxis in Leipzig Marienbrunn für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
-  <meta name="DC.description" content="Praxis in Leipzig Marienbrunn für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
+  <meta name="DC.subject" content="Praxis in Machern für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
+  <meta name="DC.description" content="Praxis in Machern für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
   <meta name="DC.publisher" content="Madeleine Wabner"/>
   <meta name="DC.contributor" content="Thomas Wabner"/>
   <meta name="DC.contributor" content="Service"/>
   <meta name="DC.rights" content="Alle Rechte liegen beim Autor"/>
   <meta name="geo.region" content="DE-SN" />
-  <meta name="geo.placename" content="Leipzig" />
-  <meta name="geo.position" content="51.3078;12.39446" />
-  <meta name="ICBM" content="51.3078, 12.39446" />
+  <meta name="geo.placename" content="Machern" />
+  <meta name="geo.region" content="DE-SN" />
+  <meta name="geo.placename" content="Machern" />
+  <meta name="geo.position" content="51.367927;12.63306" />
+  <meta name="ICBM" content="51.367927, 12.63306" />
   <title>Die Praxis - Praxis f&uuml;r Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -45,8 +47,9 @@
        var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik (updated weekly)"); 
        var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home"); 
        map.addLayers([layerMapnik,layerTah]);
-       map.setCenter(new OpenLayers.LonLat(12.39446,51.3078).transform(new OpenLayers.Projection("EPSG:4326"), 
-			       new OpenLayers.Projection("EPSG:900913")), 16);
+       // calculate lon lat with http://www.latlong.net/
+       map.setCenter(new OpenLayers.LonLat(12.632976,51.368028).transform(new OpenLayers.Projection("EPSG:4326"), 
+			       new OpenLayers.Projection("EPSG:900913")), 14);
        addMarker();
      } 
      
@@ -61,7 +64,7 @@
     	 feature = new OpenLayers.Feature(markersLayer, center);
     	 feature.closeBox = true;
     	 feature.data.popupContentHTML = '<div style="background-color:white; padding-left: 5px;">'
-    	        + '<b>Praxis Wabner</b><p>R&uuml;bezahlweg 24<br/>04277 Leipzig</p>' + '</div>';
+    	        + '<b>Praxis Wabner</b><p>Wei&szlig;ackerweg 10a<br/>04827 Machern</p>' + '</div>';
     	 marker = new OpenLayers.Marker(center, icon);
     	 marker.feature = feature;
     	 
@@ -132,14 +135,13 @@
          <div style="padding-left:20px; padding-top: 20px; padding-right: 10px;">
            <h4>Die Praxis</h4>
            Vor der Praxis stehen ausreichend Parkpl&auml;tze zur Verf&uuml;gung. Nutzen Sie am besten die Parkpl&auml;tze
-           im R&uuml;bezahlweg oder im Hirtenweg.
+           im Wei&szlig;ackerweg oder Schwarzen Weg.
            <p>
-           Sie erreichen die Praxis mit den Strassenbahnlinien 10 oder 16, Haltestelle "Triftweg" oder 
-           "An der M&auml;rchenwiese". Von dort sind es ca. 7 Minuten Fu&szlig;weg bis zur Praxis.
+           Sie erreichen die Praxis auch mit der S-Bahn S6 von Leipzig aus, Haltestelle "Machern". Von dort sind es ca. 15 Minuten Fu&szlig;weg bis zur Praxis.
            </p>
            <p>
-           Die Praxis befindet sich im Leipziger Stadtteil Marienbrunn.</br>
-           Sie ist schnell und einfach auch von den umliegenden Stadtgebieten S&uuml;dvorstadt, Connewitz, L&ouml&szlig;nig, Probstheida und Zentrum-S&uuml;dost zu erreichen. 
+           Die Praxis befindet sich im Machern.</br>
+           Sie ist schnell und einfach auch von den umliegenden Städten Leipzig, Wurzen, Taucha oder Brandis zu erreichen. 
            </p> 
             <!-- images -->
             <a rel="prettyPhoto[pp_gal]" href="images/praxis-1.png" title=""><img class="prettyPhoto" src="images/praxis-1-thumb.png" alt=""/></a>
@@ -167,18 +169,21 @@
             <ul>
               <li>
               <p><b>Kontakt:</b></p>
-              Praxis f&uuml;r Osteopathie und Kinesiologie<br/><br/>
-              Madeleine Wabner<br/>
-              R&uuml;bezahlweg 24<br/>
-              04277 Leipzig<br/>
-              <p></p>
+              <span itemprop="name">Praxis f&uuml;r Osteopathie und Kinesiologie</span><br/><br/>
+              <span itemprop="founder" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Madeleine Wabner</span></span><br/>
+              <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+              <span itemprop="streetAddress">Wei&szlig;ackerweg 10a</span><br/>
+              <span itemprop="postalCode">04827</span> <span itemprop="addressLocality">Machern</span><br/>
+              <p/>
               <table style="border-spacing: 0px;"><tr>
-              <td>Telefon:</td><td>0341 12575652</td>
+              <td>Telefon:</td><td><span itemprop="telephone">0341 12575652</span></td>
               </tr><tr>
-              <td>Handy:</td><td>0176 61907742</td>
+              <td>Handy:</td><td><span itemprop="telephone">0176 61907742</span></td>
               </tr>
               </table>
-              <p>Email: <a href="mailto:kontakt@praxis-wabner.de">kontakt@praxis-wabner.de</a></p>
+              </span>
+              <p>Email: <a href="mailto:kontakt@praxis-wabner.de"><span itemprop="founder" itemscope itemtype="http://schema.org/Person"><span itemprop="email">kontakt@praxis-wabner.de</span></span></a></p>
+              <!-- <p>Sozial: <a href="https://plus.google.com/105309398815915784168" rel="publisher">Google+</a></p> -->
               </li>
               <li>
               <p><b>Termine:</b></p>
