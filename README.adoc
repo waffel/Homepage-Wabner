@@ -1,0 +1,14 @@
+== develop the application
+
+How to run:
+
+`mvn tomcat7:run`
+
+start with `http://localhost:8080/praxis-wabner`
+
+=== used resources:
+
+* https://www.w3schools.com/w3css/w3css_responsive.asp
+* https://blog.kulturbanause.de/2013/01/starre-layouts-in-flussige-layouts-umwandeln-responsive-webdesign-basics/
+
+
