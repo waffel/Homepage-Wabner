@@ -200,6 +200,13 @@ ul {
   padding-top: 10px;
 }
 
+#additional_information {
+  padding-left: 120px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+
 #sidebar-wrapper {
   float: right;
   width: 250px;
