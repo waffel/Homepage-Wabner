@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__MCP_DOCKER__browser_navigate",
+      "mcp__MCP_DOCKER__browser_take_screenshot",
+      "mcp__MCP_DOCKER__browser_click",
+      "mcp__MCP_DOCKER__browser_resize",
+      "mcp__MCP_DOCKER__browser_snapshot",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(./test.sh)",
+      "mcp__MCP_DOCKER__mcp-find",
+      "mcp__MCP_DOCKER__browser_run_code",
+      "mcp__MCP_DOCKER__browser_wait_for",
+      "mcp__MCP_DOCKER__browser_console_messages",
+      "mcp__MCP_DOCKER__browser_network_requests",
+      "mcp__MCP_DOCKER__browser_evaluate",
+      "Bash(~/Library/Android/sdk/platform-tools/adb exec-out:*)",
+      "Bash(~/Library/Android/sdk/platform-tools/adb shell:*)",
+      "Bash(/dev/null ~/Library/Android/sdk/platform-tools/adb shell cat /sdcard/window_dump.xml)"
+    ]
+  }
+}
