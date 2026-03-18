@@ -12,6 +12,11 @@ const { test, expect } = require('@playwright/test');
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080/praxis-wabner';
 
+// Standalone config for Docker execution
+if (!require.main) {
+  module.exports = { timeout: 30000 };
+}
+
 const PAGES = [
   { path: '/', name: 'index' },
   { path: '/index2.html', name: 'index2' },

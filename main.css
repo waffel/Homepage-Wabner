@@ -245,7 +245,8 @@ ul {
   text-align: center;
 }
 
-#main_image img {
+#main_image img,
+#real-content img {
   max-width: 100%;
   height: auto;
 }
@@ -329,6 +330,56 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
+   Responsive Tables
+   -------------------------------------------------------------------------- */
+table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+#real-content table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+  #real-content table td {
+    padding: 2px;
+    font-size: 14px;
+  }
+
+  #real-content table td[width] {
+    width: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   OpenLayers Map (praxis.html)
+   -------------------------------------------------------------------------- */
+#map {
+  width: 100% !important;
+  max-width: 500px;
+  height: 300px !important;
+}
+
+@media (min-width: 768px) {
+  #map {
+    height: 400px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PrettyPhoto Gallery
+   -------------------------------------------------------------------------- */
+.prettyPhoto {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
    PrettyPhoto
    -------------------------------------------------------------------------- */
 .prettyPhoto {
@@ -337,6 +388,18 @@ ul {
 
 .prettyPhoto:hover {
   border: 2px solid #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Word Wrap for Long URLs/Text
+   -------------------------------------------------------------------------- */
+#real-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#real-content a {
+  word-break: break-all;
 }
 
 /* --------------------------------------------------------------------------
