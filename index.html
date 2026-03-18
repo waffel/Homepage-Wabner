@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Praxis in Borsdorf für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
 <meta name="author" content="Madeleine Wabner"/>
@@ -29,41 +28,27 @@ Schwangerschaft, Kopfschmerz"/>
 <div id="content">
   <div id="maindiv">
     <div id="maincontent">
-      <div id="header">
-        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <header id="header">
+        <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
         <span id="logo-bild">
-          <img src="images/logo-silbern.gif" width="65" height="66" alt="Praxis Wabner Logo"/>
+          <img src="images/logo-silbern.gif" width="65" height="66" alt="Praxis Wabner Logo">
         </span>
         <a href="index.html">
-          <span id="logo-text1" itemscope itemtype="http://data-vocabulary.org/Organization">
-          <span itemprop="name">Praxis f&uuml;r Osteopathie und Kinesiologie</span>
-          </span>
-          <span id="logo-text2" itemprop="founder" itemscope itemtype="http://schema.org/Person">
-           <span itemprop="name">Madeleine Wabner - Heilpraktikerin</span>
-          </span>
+          <span id="logo-text1">Praxis f&uuml;r Osteopathie und Kinesiologie</span>
+          <span id="logo-text2">Madeleine Wabner - Heilpraktikerin</span>
         </a>
-        <ul>
-          <li>
-            <a href="index2.html">Start</a>
-          </li>
-          <li>
-            <a href="osteopathie.html">Osteopathie</a>
-          </li>
-          <li>
-            <a href="kinesiologie.html">Kinesiologie</a>
-          </li>
-          <li>
-              <a href="about_me.html">&Uuml;ber mich</a>
-          </li>
-          <li>
-            <a href="praxis.html">Praxis</a>
-          </li>
-          <li>
-            <a href="kosten.html">Kosten</a>
-          </li>
-        </ul>
-      </div>
-      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header ul').classList.toggle('open');});</script>
+        <nav>
+          <ul>
+            <li><a href="index2.html">Start</a></li>
+            <li><a href="osteopathie.html">Osteopathie</a></li>
+            <li><a href="kinesiologie.html">Kinesiologie</a></li>
+            <li><a href="about_me.html">&Uuml;ber mich</a></li>
+            <li><a href="praxis.html">Praxis</a></li>
+            <li><a href="kosten.html">Kosten</a></li>
+          </ul>
+        </nav>
+      </header>
+      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header nav ul').classList.toggle('open');});</script>
       <div id="slogan" >
         <div id="slogan_text">
           <div style="text-align: left;">"Wer keine Zeit f&uuml;r seine Gesundheit hat,</div>
@@ -71,33 +56,33 @@ Schwangerschaft, Kopfschmerz"/>
         </div>
       </div>
       <div id="content-wrapper">
-        <div id="real-content">
+        <main id="real-content">
          <div id="main_image">
             <picture>
-              <source srcset="images/startbild.webp" type="image/webp"/>
-              <img src="images/startbild.png" alt="Startbild" width="529" height="405"/>
+              <source srcset="images/startbild.webp" type="image/webp">
+              <img src="images/startbild.png" alt="Startbild" width="529" height="405">
             </picture>
          </div>
           <h1 class="text-center" style="padding-top: 20px;">Herzlich Willkommen</h1>
          <div id="main_text">
-            Ich freue mich, Sie in meiner Praxis begr&uuml;&szlig;en zu k&ouml;nnen. Ich werde alles<br/>
+            Ich freue mich, Sie in meiner Praxis begr&uuml;&szlig;en zu k&ouml;nnen. Ich werde alles<br>
              daf&uuml;r tun, mein Wissen und K&ouml;nnen f&uuml;r Ihre Gesundheit einzusetzen.
          </div>
           <div id="additional_information">
             <!-- put additional information here -->
           </div>
-        </div>
-        <div id="sidebar-wrapper">
-          <div id="sidebar-content" itemscope itemtype="http://data-vocabulary.org/Organization">
+        </main>
+        <aside id="sidebar-wrapper">
+          <div id="sidebar-content" itemscope itemtype="https://schema.org/LocalBusiness">
             <ul>
               <li>
               <p><b>Kontakt:</b></p>
-              <span itemprop="name">Praxis f&uuml;r Osteopathie und Kinesiologie</span><br/><br/>
-              <span itemprop="founder" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Madeleine Wabner</span></span><br/>
-              <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-              <span itemprop="streetAddress">Leipziger Strasse 43</span><br/>
-              <span itemprop="postalCode">04451</span> <span itemprop="addressLocality">Borsdorf</span><br/>
-              <p/>
+              <span itemprop="name">Praxis f&uuml;r Osteopathie und Kinesiologie</span><br><br>
+              <span itemprop="founder" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Madeleine Wabner</span></span><br>
+              <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress">Leipziger Strasse 43</span><br>
+              <span itemprop="postalCode">04451</span> <span itemprop="addressLocality">Borsdorf</span><br>
+              <p>
               <table style="border-spacing: 0px;"><tr>
               <td>Telefon:</td><td><span itemprop="telephone">0341 12575652</span></td>
               </tr><tr>
@@ -105,8 +90,7 @@ Schwangerschaft, Kopfschmerz"/>
               </tr>
               </table>
               </span>
-              <p>Email: <a href="mailto:kontakt@praxis-wabner.de"><span itemprop="founder" itemscope itemtype="http://schema.org/Person"><span itemprop="email">kontakt@praxis-wabner.de</span></span></a></p>
-              <!-- <p>Sozial: <a href="https://plus.google.com/105309398815915784168" rel="publisher">Google+</a></p> -->
+              <p>Email: <a href="mailto:kontakt@praxis-wabner.de"><span itemprop="email">kontakt@praxis-wabner.de</span></a></p>
               </li>
               <li>
               <p><b>Termine:</b></p>
@@ -115,23 +99,23 @@ Schwangerschaft, Kopfschmerz"/>
               <li>
                 <p>Anfahrt:</p>
                 <a href="praxis.html">
-                  <picture><source srcset="images/karte.webp" type="image/webp"/><img src="images/karte.png" width="230" height="154" alt="Anfahrtskarte zur Praxis" loading="lazy"/></picture>
+                  <picture><source srcset="images/karte.webp" type="image/webp"><img src="images/karte.png" width="230" height="154" alt="Anfahrtskarte zur Praxis" loading="lazy"></picture>
                 </a>
                 <div id="card_click">
                 <b>
-                Bitte klicken Sie auf die Karte<br/>
+                Bitte klicken Sie auf die Karte<br>
                 f&uuml;r Interaktive Ansicht
                 </b>
                 </div>
               </li>
             </ul>
           </div>
-        </div>
-        <div id="footer">
+        </aside>
+        <footer id="footer">
           <div id="footer_text">
             Copyright (c) 2012 Madeleine Wabner &nbsp; <a href="impressum.html">Impressum</a> &nbsp; <a href="dsvgo.html">Datenschutz</a>
           </div>
-        </div>
+        </footer>
       </div>
 
     </div>

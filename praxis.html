@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+
+<!DOCTYPE html>
+<html lang="de">
  <head>
 <script>
 !function(){function a(a){var b=document.createElement("style");b.rel="stylesheet",document.head.appendChild(b),b.textContent=a}var b="sourceParisienne";try{if(localStorage[b])a(localStorage[b]);else{var c=new XMLHttpRequest;c.open("GET","css/parisienne.css",!0),c.onload=function(){c.status>=200&&c.status<400&&(localStorage[b]=c.responseText,a(c.responseText))},c.send()}}catch(d){}}();
@@ -8,7 +8,7 @@
 </script>
   <link rel="stylesheet" href="theme/default/style.css"/>
   <link href="css/prettyPhoto.css" type="text/css" media="screen" rel="stylesheet" title="prettyPhoto main stylesheet" charset="utf-8" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta charset="UTF-8">
   <meta name="description" content="Praxis in Borsdorf für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
   <meta name="author" content="Madeleine Wabner"/>
   <meta name="keywords" content="Anfahrt, Parkplatz, Straßenbahn, Fußweg, Borsdorf, Wurzen, Leipzig"/>
@@ -91,7 +91,7 @@
 <div id="content">
   <div id="maindiv">
     <div id="maincontent">
-      <div id="header">
+      <header id="header">
         <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
         <span id="logo-bild">
           <img src="images/logo-silbern.gif" width="65" height="66" alt="Praxis Wabner Logo"/>
@@ -104,7 +104,8 @@
            Madeleine Wabner - Heilpraktikerin
           </span>
         </a>
-        <ul>
+        <nav>
+          <ul>
           <li>
             <a href="index2.html">Start</a>
           </li>
@@ -124,8 +125,9 @@
             <a href="kosten.html">Kosten</a>
           </li>
         </ul>
-      </div>
-      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header ul').classList.toggle('open');});</script>
+        </nav>
+      </header>
+      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header nav ul').classList.toggle('open');});</script>
       <div id="slogan" >
         <div id="slogan_text">
           <div style="text-align: left;">"Der Gesunde hat viele W&uuml;nsche,</div>
@@ -133,7 +135,7 @@
         </div>
       </div>
       <div id="content-wrapper">
-        <div id="real-content">
+        <main id="real-content">
          <div style="padding-left:20px; padding-top: 20px; padding-right: 10px;">
            <div id="additional_information">
              +++ Leider können im Moment keine Neuanmeldungen vorgenommen werden. +++
@@ -173,8 +175,8 @@
            <h5>interaktive Karte:</h5>
            <div id="map"></div>
          </div>
-        </div>
-        <div id="sidebar-wrapper">
+        </main>
+        <aside id="sidebar-wrapper">
           <div id="sidebar-content">
             <ul>
               <li>
@@ -213,12 +215,12 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div id="footer">
+        </aside>
+        <footer id="footer">
           <div id="footer_text">
             Copyright (c) 2012 Madeleine Wabner &nbsp; <a href="impressum.html">Impressum</a> &nbsp; <a href="dsvgo.html">Datenschutz</a>
           </div>
-        </div>
+        </footer>
       </div>
      
     </div>

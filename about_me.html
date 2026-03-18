@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+
+<!DOCTYPE html>
+<html lang="de">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Praxis in Borsdorf für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
 <meta name="author" content="Madeleine Wabner"/>
@@ -25,7 +25,7 @@
 <div id="content">
   <div id="maindiv">
     <div id="maincontent">
-      <div id="header">
+      <header id="header">
         <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
         <span id="logo-bild">
           <img src="images/logo-silbern.gif" width="65" height="66" alt="Praxis Wabner Logo"/>
@@ -38,7 +38,8 @@
            Madeleine Wabner - Heilpraktikerin
           </span>
         </a>
-        <ul>
+        <nav>
+          <ul>
           <li>
             <a href="index2.html">Start</a>
           </li>
@@ -58,15 +59,16 @@
             <a href="kosten.html">Kosten</a>
           </li>
         </ul>
-      </div>
-      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header ul').classList.toggle('open');});</script>
+        </nav>
+      </header>
+      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header nav ul').classList.toggle('open');});</script>
       <div id="slogan" >
         <div id="slogan_text">
           <div style="text-align: left;">"Gesundheit h&auml;ngt davon ab, dass wir in Harmonie mit unserer Seele sind" &nbsp; (Dr. Edward Bach)</div>
         </div>
       </div>
       <div id="content-wrapper">
-        <div id="real-content">
+        <main id="real-content">
          <div style="padding-left:20px; padding-top: 20px; padding-right: 10px;">
            <h1>&Uuml;ber mich</h1>
            Ich hei&szlig;e Madeleine Wabner, bin 1976 geboren, gl&uuml;cklich verheiratet und Mutter einer Tochter.
@@ -134,8 +136,8 @@
             </table>
             <p></p>
            </div>
-        </div>
-        <div id="sidebar-wrapper">
+        </main>
+        <aside id="sidebar-wrapper">
           <div id="sidebar-content">
             <ul>
               <li>
@@ -174,12 +176,12 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div id="footer">
+        </aside>
+        <footer id="footer">
           <div id="footer_text">
             Copyright (c) 2012 Madeleine Wabner &nbsp; <a href="impressum.html">Impressum</a> &nbsp; <a href="dsvgo.html">Datenschutz</a>
           </div>
-        </div>
+        </footer>
       </div>
      
     </div>
