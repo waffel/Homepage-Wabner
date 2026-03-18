@@ -1,0 +1,173 @@
+= ADR-0001: Responsive Design Approach
+
+== Status
+
+Accepted (2026-03-18)
+
+== Context
+
+The Praxis Wabner website is a static HTML/CSS site for a German healthcare practice. The site was built with a fixed 980px width layout, making it unusable on mobile devices and tablets.
+
+*Current State:*
+
+* Fixed `width: 980px !important` in CSS
+* No viewport meta tag (or restrictive `user-scalable=0`)
+* Minified CSS that is difficult to maintain
+* Navigation not accessible on small screens
+* Images overflow on mobile devices
+
+*Business Need:*
+
+* Over 50% of web traffic now comes from mobile devices
+* Patients need to quickly find contact information on their phones
+* Google penalizes non-mobile-friendly sites in search rankings
+
+*Constraints:*
+
+* Keep the simple, static HTML structure (no build system)
+* No external dependencies (all assets local)
+* Minimal JavaScript usage
+* Maintain existing visual design and branding
+* Site must remain easily editable by non-developers
+
+== Decision
+
+We will implement a *mobile-first responsive design* using CSS media queries and Flexbox, while preserving the existing tech stack.
+
+*Key Technical Decisions:*
+
+[cols="1,2",options="header"]
+|===
+|Aspect |Decision
+
+|CSS Architecture
+|Unminify `main.css`, introduce CSS custom properties for colors/spacing, mobile-first media queries
+
+|Breakpoints
+|Mobile (default), Tablet (768px), Desktop (1024px)
+
+|Layout System
+|CSS Flexbox for main content/sidebar layout
+
+|Navigation
+|Hamburger menu on mobile with vanilla JS toggle (no jQuery dependency)
+
+|Images
+|`max-width: 100%; height: auto;` for all content images
+
+|Viewport
+|`<meta name="viewport" content="width=device-width, initial-scale=1.0">` on all pages
+
+|Testing
+|Playwright tests in Docker for automated responsive testing
+|===
+
+*Why Mobile-First:*
+
+* Forces focus on essential content
+* Progressive enhancement for larger screens
+* Better performance on mobile (loads base styles first)
+* Easier to maintain and extend
+
+*Why Not a CSS Framework (Bootstrap, Tailwind):*
+
+* Adds external dependency
+* Increases page weight significantly
+* Overkill for a simple 9-page static site
+* Would require restructuring all HTML
+
+== Consequences
+
+=== Positive
+
+* *Mobile Accessibility*: Site usable on all devices (320px to 1920px+)
+* *SEO Improvement*: Google mobile-friendly ranking boost
+* *Better UX*: Patients can easily find contact info on phones
+* *Maintainable CSS*: Readable, structured CSS with variables
+* *Automated Testing*: 71 Playwright tests verify responsive behavior
+* *No New Dependencies*: Pure CSS/vanilla JS solution
+* *Docker-Only Testing*: No npm/node installation required locally
+
+=== Negative
+
+* *Increased CSS Size*: Unminified CSS is larger (~8KB vs ~2KB)
+* *Learning Curve*: Future maintainers need to understand media queries
+* *Testing Overhead*: Tests add ~4 seconds to verification
+
+=== Neutral
+
+* *Visual Changes*: Layout adapts but overall design unchanged
+* *Browser Support*: Flexbox works in all modern browsers (IE11 partially)
+
+== Implementation
+
+=== Files Changed
+
+[cols="1,2",options="header"]
+|===
+|File |Changes
+
+|`main.css`
+|Unminified, CSS variables, Flexbox layout, media queries
+
+|`*.html` (9 files)
+|Viewport meta tag, hamburger button, nav toggle script
+
+|`tests/responsive.spec.js`
+|71 automated tests for viewports 320px-1440px
+
+|`test.sh`
+|Docker-only test runner (no npm required)
+|===
+
+=== Test Results
+
+All 71 tests passing across viewports:
+
+[source]
+----
+✓ No horizontal overflow (45 tests)
+✓ Navigation hamburger/desktop (4 tests)
+✓ Images responsive (3 tests)
+✓ Typography >= 16px mobile (1 test)
+✓ All pages load (9 tests)
+✓ Viewport meta tag present (9 tests)
+
+71 passed (3.9s)
+----
+
+=== Screenshots
+
+[cols="1,1,1",options="header"]
+|===
+|Mobile (320px) |Tablet (768px) |Desktop (1024px)
+
+a|image::../../screenshots/mobile-320px.png[Mobile,200]
+a|image::../../screenshots/tablet-768px.png[Tablet,200]
+a|image::../../screenshots/desktop-1024px.png[Desktop,200]
+|===
+
+== Alternatives Considered
+
+=== 1. Bootstrap/Tailwind CSS
+* *Rejected*: External dependency, significant HTML restructuring required
+
+=== 2. Complete Redesign with Static Site Generator
+* *Rejected*: Out of scope, would require major effort and change maintenance model
+
+=== 3. Separate Mobile Site (m.praxis-wabner.de)
+* *Rejected*: Duplicate maintenance, poor SEO, outdated approach
+
+=== 4. AMP (Accelerated Mobile Pages)
+* *Rejected*: Restrictive, overkill for simple content site
+
+== Related Decisions
+
+* Future: Consider migrating to HTML5 semantic elements
+* Future: Image optimization (WebP, lazy loading)
+
+== References
+
+* https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design[MDN: Responsive Design]
+* https://web.dev/responsive-web-design-basics/[web.dev: Responsive Web Design Basics]
+* https://playwright.dev/docs/test-snapshots[Playwright Visual Testing]
