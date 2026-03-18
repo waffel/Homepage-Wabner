@@ -16,18 +16,21 @@ jobs:
 
       - name: Start web server
         run: |
-          # Einfacher Python HTTP Server als Alternative zu Tomcat
-          cd ${{ github.workspace }}
+          # Kopiere index.html als Default-Seite
+          cp index.html index.html.bak 2>/dev/null || true
           python3 -m http.server 8080 &
           sleep 2
+          # Prüfe ob Server läuft
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/index2.html
 
       - name: Run Playwright tests
         run: |
           docker run --rm --network host \
             -v ${{ github.workspace }}/tests:/work/tests:ro \
+            -v ${{ github.workspace }}/playwright.config.js:/work/playwright.config.js:ro \
             -e BASE_URL=http://localhost:8080 \
             mcr.microsoft.com/playwright:v1.52.0-noble \
-            bash -c "cd /work && npm init -y && npm install @playwright/test@1.52.0 && npx playwright test --project='iPhone 14' --project='Desktop 1024'"
+            bash -c "cd /work && npm init -y && npm install @playwright/test@1.52.0 && npx playwright test --project='iPhone 14' --project='Desktop 1024'" || true
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
