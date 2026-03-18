@@ -119,6 +119,50 @@ test.describe('Navigation', () => {
     await expect(nav).toBeVisible();
     await context.close();
   });
+
+  // All 6 menu items must be visible and identical on mobile and desktop
+  const EXPECTED_MENU_ITEMS = ['Start', 'Osteopathie', 'Kinesiologie', 'Über mich', 'Praxis', 'Kosten'];
+
+  test('all menu items visible on mobile after hamburger click', async ({ browser }) => {
+    const context = await browser.newContext({
+      viewport: { width: 375, height: 667 },
+    });
+    const page = await context.newPage();
+    await page.goto(`${BASE_URL}/index2.html`);
+
+    // Open menu
+    await page.locator('.nav-toggle').click();
+
+    // Check all 6 menu items are visible AND within viewport (not clipped)
+    for (const item of EXPECTED_MENU_ITEMS) {
+      const link = page.locator(`#header ul a:has-text("${item}")`);
+      await expect(link, `Menu item "${item}" should be visible`).toBeVisible();
+
+      // Verify item is actually within viewport bounds (not clipped)
+      const box = await link.boundingBox();
+      expect(box, `Menu item "${item}" should have a bounding box`).not.toBeNull();
+      expect(box.y, `Menu item "${item}" should be below viewport top`).toBeGreaterThanOrEqual(0);
+      expect(box.y + box.height, `Menu item "${item}" should be above viewport bottom`).toBeLessThanOrEqual(667);
+    }
+
+    await context.close();
+  });
+
+  test('all menu items visible on desktop', async ({ browser }) => {
+    const context = await browser.newContext({
+      viewport: { width: 1024, height: 768 },
+    });
+    const page = await context.newPage();
+    await page.goto(`${BASE_URL}/index2.html`);
+
+    // Check all 6 menu items are visible
+    for (const item of EXPECTED_MENU_ITEMS) {
+      const link = page.locator(`#header ul a:has-text("${item}")`);
+      await expect(link, `Menu item "${item}" should be visible`).toBeVisible();
+    }
+
+    await context.close();
+  });
 });
 
 // DoD: Images don't overflow viewport
