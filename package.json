@@ -1,0 +1,14 @@
+{
+  "name": "praxis-wabner-tests",
+  "version": "1.0.0",
+  "description": "Responsive design tests for Praxis Wabner website",
+  "scripts": {
+    "test": "playwright test",
+    "test:docker": "docker run --rm -v $(pwd):/app -w /app --network host mcr.microsoft.com/playwright:v1.48.0-jammy npx playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}

@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Praxis in Borsdorf für Osteopathie und Kinesiologie Madeleine Wabner - Heilpraktikerin"/>
 <meta name="author" content="Madeleine Wabner"/>
 <meta name="keywords" content="Osteopathie, Kinesiologie, Heilpraktiker, Alternativmedizin, Praxis, Leipzig,
@@ -28,6 +29,7 @@ Schwangerschaft, Kopfschmerz"/>
   <div id="maindiv">
     <div id="maincontent">
       <div id="header">
+        <button class="nav-toggle" aria-label="Menu">&#9776;</button>
         <span id="logo-bild">
           <img src="images/logo-silbern.gif" width="65" height="66"/>
         </span>
@@ -60,6 +62,7 @@ Schwangerschaft, Kopfschmerz"/>
           </li>
         </ul>
       </div>
+      <script>document.querySelector('.nav-toggle').addEventListener('click',function(){document.querySelector('#header ul').classList.toggle('open');});</script>
       <div id="slogan" >
         <div id="slogan_text" style="width: 520px;">
           <div style="text-align: left;">"Wer keine Zeit f&uuml;r seine Gesundheit hat,</div>
