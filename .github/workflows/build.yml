@@ -1,0 +1,51 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  package:
+    name: Package for S3
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create deployment package
+        run: |
+          mkdir -p dist
+
+          # HTML files
+          cp *.html dist/
+
+          # CSS
+          cp main.css dist/
+          cp -r css dist/
+
+          # JavaScript
+          cp *.js dist/
+          cp -r js dist/
+
+          # Images
+          cp -r images dist/
+          cp -r img dist/
+
+          # Theme (prettyPhoto etc.)
+          cp -r theme dist/
+
+          # Logo
+          cp Logo.png dist/
+
+          echo "Package contents:"
+          find dist -type f | wc -l
+          echo "files"
+          du -sh dist
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: praxis-wabner-${{ github.sha }}
+          path: dist/
+          retention-days: 30
