@@ -220,6 +220,8 @@ ul {
   font-size: 16px;
   text-align: center;
   width: auto !important;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 #slogan_text div {
@@ -316,6 +318,14 @@ ul {
   font-family: var(--font-family);
 }
 
+/* Accessible tap targets for sidebar links */
+#sidebar-content a {
+  display: inline-block;
+  padding: 8px 0;
+  min-height: 44px;
+  line-height: 1.5;
+}
+
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
@@ -340,6 +350,10 @@ ul {
 #footer_text a {
   color: #000;
   text-decoration: none;
+  display: inline-block;
+  padding: 12px 8px;
+  min-height: 44px;
+  line-height: 20px;
 }
 
 /* --------------------------------------------------------------------------
@@ -486,6 +500,16 @@ table {
 
 #real-content a {
   word-break: break-all;
+}
+
+/* --------------------------------------------------------------------------
+   Headings (semantic H1 styled to match original H4)
+   -------------------------------------------------------------------------- */
+#real-content h1 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 0 0.5em 0;
+  padding: 0;
 }
 
 /* --------------------------------------------------------------------------

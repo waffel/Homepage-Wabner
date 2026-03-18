@@ -13,5 +13,5 @@ docker run --rm \
   -v "$(pwd)/tests:/work/tests:ro" \
   -w /work \
   -e BASE_URL="$BASE_URL" \
-  mcr.microsoft.com/playwright:v1.52.0-noble \
-  bash -c "npm init -y >/dev/null && npm i -s @playwright/test@1.52.0 >/dev/null 2>&1 && npx playwright test tests/ --reporter=list"
+  mcr.microsoft.com/playwright:v1.58.0-noble \
+  bash -c "npm init -y >/dev/null && npm i -s @playwright/test@1.58.0 >/dev/null 2>&1 && npx playwright test tests/ --reporter=list"
