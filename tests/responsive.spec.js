@@ -1,233 +1,253 @@
 /**
- * Responsive Design Tests
+ * Responsive Design Tests für Praxis Wabner
  *
- * Tests the Definition of Done criteria for the responsive design implementation.
- * Run with: npx playwright test tests/responsive.spec.js
+ * Diese Tests prüfen die Definition of Done für das responsive Design.
  *
- * Prerequisites:
- *   npm init -y && npm install -D @playwright/test && npx playwright install chromium
+ * Ausführung: bash test.sh (Server muss laufen: mvn tomcat7:run)
  */
 
 const { test, expect } = require('@playwright/test');
 
+// ============================================================================
+// Konfiguration
+// ============================================================================
+
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080/praxis-wabner';
 
-// Standalone config for Docker execution
-if (!require.main) {
-  module.exports = { timeout: 30000 };
+/** Alle Seiten der Praxis-Website */
+const SEITEN = [
+  { pfad: '/',                  name: 'Startseite' },
+  { pfad: '/index2.html',       name: 'Startseite (Alt)' },
+  { pfad: '/osteopathie.html',  name: 'Osteopathie' },
+  { pfad: '/kinesiologie.html', name: 'Kinesiologie' },
+  { pfad: '/about_me.html',     name: 'Über mich' },
+  { pfad: '/praxis.html',       name: 'Praxis & Anfahrt' },
+  { pfad: '/kosten.html',       name: 'Kosten' },
+  { pfad: '/impressum.html',    name: 'Impressum' },
+  { pfad: '/dsvgo.html',        name: 'Datenschutz' },
+];
+
+/** Typische Geräte zum Testen */
+const GERAETE = {
+  iPhoneSE:      { breite: 320,  hoehe: 568,  name: 'iPhone SE' },
+  iPhone14:      { breite: 390,  hoehe: 844,  name: 'iPhone 14' },
+  iPad:          { breite: 768,  hoehe: 1024, name: 'iPad' },
+  desktop:       { breite: 1024, hoehe: 768,  name: 'Desktop' },
+  desktopGross:  { breite: 1440, hoehe: 900,  name: 'Desktop (groß)' },
+};
+
+/** Die 6 Hauptmenüpunkte */
+const MENUEPUNKTE = ['Start', 'Osteopathie', 'Kinesiologie', 'Über mich', 'Praxis', 'Kosten'];
+
+// ============================================================================
+// Hilfsfunktionen
+// ============================================================================
+
+/** Öffnet eine Seite mit bestimmter Bildschirmgröße */
+async function oeffneSeite(browser, geraet, pfad) {
+  const context = await browser.newContext({
+    viewport: { width: geraet.breite, height: geraet.hoehe },
+  });
+  const page = await context.newPage();
+  await page.goto(`${BASE_URL}${pfad}`, { waitUntil: 'networkidle' });
+  // Warte kurz damit CSS vollständig angewendet wird
+  await page.waitForTimeout(100);
+  return { page, context };
 }
 
-const PAGES = [
-  { path: '/', name: 'index' },
-  { path: '/index2.html', name: 'index2' },
-  { path: '/osteopathie.html', name: 'osteopathie' },
-  { path: '/kinesiologie.html', name: 'kinesiologie' },
-  { path: '/about_me.html', name: 'about_me' },
-  { path: '/praxis.html', name: 'praxis' },
-  { path: '/kosten.html', name: 'kosten' },
-  { path: '/impressum.html', name: 'impressum' },
-  { path: '/dsvgo.html', name: 'dsvgo' },
-];
+/** Prüft ob horizontales Scrollen nötig ist */
+async function hatHorizontalenOverflow(page) {
+  const scrollBreite = await page.evaluate(() => document.documentElement.scrollWidth);
+  const sichtbareBreite = await page.evaluate(() => document.documentElement.clientWidth);
+  return scrollBreite > sichtbareBreite + 1; // 1px Toleranz
+}
 
-const VIEWPORTS = [
-  { name: 'iPhone SE', width: 320, height: 568 },
-  { name: 'iPhone 14', width: 390, height: 844 },
-  { name: 'iPad', width: 768, height: 1024 },
-  { name: 'Desktop', width: 1024, height: 768 },
-  { name: 'Desktop Large', width: 1440, height: 900 },
-];
+// ============================================================================
+// Tests: Kein horizontales Scrollen
+// ============================================================================
 
-// DoD: No horizontal scrollbars on mobile
-test.describe('No horizontal overflow', () => {
-  for (const viewport of VIEWPORTS) {
-    for (const page of PAGES) {
-      test(`${page.name} at ${viewport.name} (${viewport.width}px)`, async ({ browser }) => {
-        const context = await browser.newContext({
-          viewport: { width: viewport.width, height: viewport.height },
-        });
-        const p = await context.newPage();
-        await p.goto(`${BASE_URL}${page.path}`);
+test.describe('Kein horizontales Scrollen', () => {
+  test.describe.configure({ mode: 'parallel' });
 
-        const scrollWidth = await p.evaluate(() => document.documentElement.scrollWidth);
-        const clientWidth = await p.evaluate(() => document.documentElement.clientWidth);
+  for (const geraet of Object.values(GERAETE)) {
+    for (const seite of SEITEN) {
+      test(`${seite.name} auf ${geraet.name}`, async ({ browser }) => {
+        const { page, context } = await oeffneSeite(browser, geraet, seite.pfad);
 
-        expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 1); // 1px tolerance
+        const overflow = await hatHorizontalenOverflow(page);
+        expect(overflow, `Seite "${seite.name}" sollte auf ${geraet.name} nicht horizontal scrollen`).toBe(false);
+
         await context.close();
       });
     }
   }
 });
 
-// DoD: Navigation works on all devices (hamburger menu on mobile)
+// ============================================================================
+// Tests: Navigation / Hamburger-Menü
+// ============================================================================
+
 test.describe('Navigation', () => {
-  test('hamburger menu visible on mobile', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 375, height: 667 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
+
+  test('Hamburger-Menü ist auf dem Handy sichtbar', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.iPhone14, '/index2.html');
 
     const hamburger = page.locator('.nav-toggle');
     await expect(hamburger).toBeVisible();
+
     await context.close();
   });
 
-  test('hamburger menu hidden on desktop', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 1024, height: 768 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
+  test('Hamburger-Menü ist auf dem Desktop versteckt', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.desktop, '/index2.html');
 
     const hamburger = page.locator('.nav-toggle');
     await expect(hamburger).toBeHidden();
+
     await context.close();
   });
 
-  test('nav menu toggles on hamburger click', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 375, height: 667 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
+  test('Menü öffnet und schließt bei Klick auf Hamburger', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.iPhone14, '/index2.html');
 
-    const nav = page.locator('#header ul');
+    const menue = page.locator('#header ul');
     const hamburger = page.locator('.nav-toggle');
 
-    // Menu should be hidden initially
-    await expect(nav).toBeHidden();
+    // Menü ist anfangs geschlossen
+    await expect(menue).toBeHidden();
 
-    // Click hamburger - menu should open
+    // Klick öffnet das Menü
     await hamburger.click();
-    await expect(nav).toBeVisible();
+    await expect(menue).toBeVisible();
 
-    // Click again - menu should close
+    // Nochmal klicken schließt es wieder
     await hamburger.click();
-    await expect(nav).toBeHidden();
+    await expect(menue).toBeHidden();
 
     await context.close();
   });
 
-  test('nav menu visible on desktop without hamburger', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 1024, height: 768 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
+  test('Menü ist auf Desktop direkt sichtbar (ohne Hamburger)', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.desktop, '/index2.html');
 
-    const nav = page.locator('#header ul');
-    await expect(nav).toBeVisible();
+    const menue = page.locator('#header ul');
+    await expect(menue).toBeVisible();
+
     await context.close();
   });
 
-  // All 6 menu items must be visible and identical on mobile and desktop
-  const EXPECTED_MENU_ITEMS = ['Start', 'Osteopathie', 'Kinesiologie', 'Über mich', 'Praxis', 'Kosten'];
+  test('Alle 6 Menüpunkte sind auf dem Handy erreichbar', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.iPhone14, '/index2.html');
 
-  test('all menu items visible on mobile after hamburger click', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 375, height: 667 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
-
-    // Open menu
+    // Menü öffnen
     await page.locator('.nav-toggle').click();
 
-    // Check all 6 menu items are visible AND within viewport (not clipped)
-    for (const item of EXPECTED_MENU_ITEMS) {
-      const link = page.locator(`#header ul a:has-text("${item}")`);
-      await expect(link, `Menu item "${item}" should be visible`).toBeVisible();
+    // Jeden Menüpunkt prüfen
+    for (const punkt of MENUEPUNKTE) {
+      const link = page.locator(`#header ul a:has-text("${punkt}")`);
 
-      // Verify item is actually within viewport bounds (not clipped)
+      await expect(link, `Menüpunkt "${punkt}" sollte sichtbar sein`).toBeVisible();
+
+      // Prüfen ob der Punkt im sichtbaren Bereich liegt (nicht abgeschnitten)
       const box = await link.boundingBox();
-      expect(box, `Menu item "${item}" should have a bounding box`).not.toBeNull();
-      expect(box.y, `Menu item "${item}" should be below viewport top`).toBeGreaterThanOrEqual(0);
-      expect(box.y + box.height, `Menu item "${item}" should be above viewport bottom`).toBeLessThanOrEqual(667);
+      expect(box, `Menüpunkt "${punkt}" sollte eine Position haben`).not.toBeNull();
+      expect(box.y).toBeGreaterThanOrEqual(0);
+      expect(box.y + box.height).toBeLessThanOrEqual(GERAETE.iPhone14.hoehe);
     }
 
     await context.close();
   });
 
-  test('all menu items visible on desktop', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 1024, height: 768 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
+  test('Alle 6 Menüpunkte sind auf Desktop sichtbar', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.desktop, '/index2.html');
 
-    // Check all 6 menu items are visible
-    for (const item of EXPECTED_MENU_ITEMS) {
-      const link = page.locator(`#header ul a:has-text("${item}")`);
-      await expect(link, `Menu item "${item}" should be visible`).toBeVisible();
+    for (const punkt of MENUEPUNKTE) {
+      const link = page.locator(`#header ul a:has-text("${punkt}")`);
+      await expect(link, `Menüpunkt "${punkt}" sollte sichtbar sein`).toBeVisible();
     }
 
     await context.close();
   });
 });
 
-// DoD: Images don't overflow viewport
-test.describe('Images responsive', () => {
-  for (const viewport of VIEWPORTS.filter(v => v.width <= 768)) {
-    test(`images fit within viewport at ${viewport.name}`, async ({ browser }) => {
-      const context = await browser.newContext({
-        viewport: { width: viewport.width, height: viewport.height },
-      });
-      const page = await context.newPage();
-      await page.goto(`${BASE_URL}/index2.html`);
+// ============================================================================
+// Tests: Responsive Bilder
+// ============================================================================
 
-      const images = await page.locator('img').all();
-      for (const img of images) {
-        const box = await img.boundingBox();
+test.describe('Bilder passen in den Bildschirm', () => {
+
+  const mobileGeraete = [GERAETE.iPhoneSE, GERAETE.iPhone14, GERAETE.iPad];
+
+  for (const geraet of mobileGeraete) {
+    test(`Bilder auf ${geraet.name} nicht breiter als Bildschirm`, async ({ browser }) => {
+      const { page, context } = await oeffneSeite(browser, geraet, '/index2.html');
+
+      const bilder = await page.locator('img').all();
+
+      for (const bild of bilder) {
+        const box = await bild.boundingBox();
         if (box) {
-          expect(box.width).toBeLessThanOrEqual(viewport.width);
+          expect(box.width, 'Bild sollte nicht breiter als Bildschirm sein')
+            .toBeLessThanOrEqual(geraet.breite);
         }
       }
+
       await context.close();
     });
   }
 });
 
-// DoD: Text readable without zoom (min 16px on mobile)
-test.describe('Typography', () => {
-  test('base font size >= 16px on mobile', async ({ browser }) => {
-    const context = await browser.newContext({
-      viewport: { width: 375, height: 667 },
-    });
-    const page = await context.newPage();
-    await page.goto(`${BASE_URL}/index2.html`);
+// ============================================================================
+// Tests: Lesbarkeit
+// ============================================================================
 
-    const fontSize = await page.evaluate(() => {
+test.describe('Text ist lesbar', () => {
+
+  test('Schriftgröße auf Handy mindestens 16px', async ({ browser }) => {
+    const { page, context } = await oeffneSeite(browser, GERAETE.iPhone14, '/index2.html');
+
+    const schriftgroesse = await page.evaluate(() => {
       return parseFloat(window.getComputedStyle(document.body).fontSize);
     });
 
-    expect(fontSize).toBeGreaterThanOrEqual(16);
+    expect(schriftgroesse, 'Basis-Schriftgröße sollte mindestens 16px sein')
+      .toBeGreaterThanOrEqual(16);
+
     await context.close();
   });
 });
 
-// DoD: All 9 HTML pages load successfully
-test.describe('All pages load', () => {
-  for (const page of PAGES) {
-    test(`${page.name} loads successfully`, async ({ request }) => {
-      const response = await request.get(`${BASE_URL}${page.path}`);
-      expect(response.status()).toBe(200);
+// ============================================================================
+// Tests: Alle Seiten erreichbar
+// ============================================================================
+
+test.describe('Alle Seiten laden', () => {
+
+  for (const seite of SEITEN) {
+    test(`${seite.name} ist erreichbar`, async ({ request }) => {
+      const response = await request.get(`${BASE_URL}${seite.pfad}`);
+      expect(response.status(), `${seite.name} sollte HTTP 200 zurückgeben`).toBe(200);
     });
   }
 });
 
-// Viewport meta tag present
-test.describe('Viewport meta tag', () => {
-  for (const page of PAGES) {
-    test(`${page.name} has viewport meta tag`, async ({ browser }) => {
-      const context = await browser.newContext();
-      const p = await context.newPage();
-      await p.goto(`${BASE_URL}${page.path}`);
+// ============================================================================
+// Tests: Mobile-Optimierung
+// ============================================================================
 
-      const viewport = await p.locator('meta[name="viewport"]').getAttribute('content');
-      expect(viewport).toContain('width=device-width');
-      expect(viewport).toContain('initial-scale=1');
-      // Should NOT have user-scalable=0 (accessibility issue)
-      expect(viewport).not.toContain('user-scalable=0');
+test.describe('Mobile-Optimierung', () => {
+
+  for (const seite of SEITEN) {
+    test(`${seite.name} hat korrekten Viewport-Meta-Tag`, async ({ browser }) => {
+      const context = await browser.newContext();
+      const page = await context.newPage();
+      await page.goto(`${BASE_URL}${seite.pfad}`);
+
+      const viewport = await page.locator('meta[name="viewport"]').getAttribute('content');
+
+      expect(viewport, 'Viewport sollte width=device-width haben').toContain('width=device-width');
+      expect(viewport, 'Viewport sollte initial-scale=1 haben').toContain('initial-scale=1');
+      expect(viewport, 'Zoom sollte erlaubt sein (Barrierefreiheit)').not.toContain('user-scalable=0');
 
       await context.close();
     });
