@@ -5,10 +5,21 @@
   <artifactId>homepage-wabner</artifactId>
   <name>Homepage Praxis Wabner</name>
   <version>1.0-SNAPSHOT</version>
-  <!-- required for the tomcat maven plugin -->
-  <packaging>war</packaging>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <aws.region>eu-west-1</aws.region>
+    <aws.s3.bucket>praxis-wabner.de</aws.s3.bucket>
+    <aws.profile>praxis-wabner</aws.profile>
+    <!-- CloudFront Distribution IDs -->
+    <aws.cloudfront.distribution.de>E1IBBL8X2H2ACM</aws.cloudfront.distribution.de>
+    <aws.cloudfront.distribution.com>E1C2LCDH8KT5OI</aws.cloudfront.distribution.com>
+  </properties>
+
   <build>
     <plugins>
+      <!-- Tomcat for local preview -->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
@@ -18,7 +29,159 @@
           <warSourceDirectory>.</warSourceDirectory>
         </configuration>
       </plugin>
+
+      <!-- Clean dist folder -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.3.2</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${project.basedir}/dist</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+
+      <!-- Copy resources to dist -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>copy-website-files</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/dist</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>*.html</include>
+                    <include>main.css</include>
+                    <include>css/**</include>
+                    <include>*.js</include>
+                    <include>js/**</include>
+                    <include>images/**</include>
+                    <include>img/**</include>
+                    <include>theme/**</include>
+                    <include>Logo.png</include>
+                    <include>robots.txt</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Exec plugin for AWS commands -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <!-- S3 Sync -->
+          <execution>
+            <id>s3-sync</id>
+            <phase>none</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>aws</executable>
+              <arguments>
+                <argument>s3</argument>
+                <argument>sync</argument>
+                <argument>${project.basedir}/dist/</argument>
+                <argument>s3://${aws.s3.bucket}/</argument>
+                <argument>--profile</argument>
+                <argument>${aws.profile}</argument>
+                <argument>--region</argument>
+                <argument>${aws.region}</argument>
+                <argument>--delete</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <!-- CloudFront Invalidation .de -->
+          <execution>
+            <id>cloudfront-invalidate-de</id>
+            <phase>none</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>aws</executable>
+              <arguments>
+                <argument>cloudfront</argument>
+                <argument>create-invalidation</argument>
+                <argument>--distribution-id</argument>
+                <argument>${aws.cloudfront.distribution.de}</argument>
+                <argument>--paths</argument>
+                <argument>/*</argument>
+                <argument>--profile</argument>
+                <argument>${aws.profile}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <!-- CloudFront Invalidation .com -->
+          <execution>
+            <id>cloudfront-invalidate-com</id>
+            <phase>none</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>aws</executable>
+              <arguments>
+                <argument>cloudfront</argument>
+                <argument>create-invalidation</argument>
+                <argument>--distribution-id</argument>
+                <argument>${aws.cloudfront.distribution.com}</argument>
+                <argument>--paths</argument>
+                <argument>/*</argument>
+                <argument>--profile</argument>
+                <argument>${aws.profile}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <!-- AWS Deployment Profile -->
+    <profile>
+      <id>aws</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>s3-sync</id>
+                <phase>deploy</phase>
+              </execution>
+              <execution>
+                <id>cloudfront-invalidate-de</id>
+                <phase>deploy</phase>
+              </execution>
+              <execution>
+                <id>cloudfront-invalidate-com</id>
+                <phase>deploy</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
