@@ -1,0 +1,86 @@
+= Deployment Guide
+:toc:
+
+== Voraussetzungen
+
+AWS-Profil `praxis-wabner` muss konfiguriert sein:
+
+[source,bash]
+----
+aws configure --profile praxis-wabner
+# AWS Access Key ID: (siehe KeyPass "deploy-praxis-wabner")
+# AWS Secret Access Key: (siehe KeyPass)
+# Region: eu-west-1
+----
+
+== Deployment-Befehl
+
+[source,bash]
+----
+mvn clean package -Paws && mvn exec:exec@s3-sync -Paws && mvn exec:exec@cloudfront-invalidate-de -Paws && mvn exec:exec@cloudfront-invalidate-com -Paws
+----
+
+Das macht:
+
+1. `package` - Kopiert Website-Dateien nach `dist/`
+2. `s3-sync` - Synchronisiert `dist/` nach S3-Bucket `praxis-wabner.de`
+3. `cloudfront-invalidate-de` - Invalidiert CloudFront-Cache für .de Domain
+4. `cloudfront-invalidate-com` - Invalidiert CloudFront-Cache für .com Domain
+
+== CSS Cache-Busting
+
+IMPORTANT: Bei CSS-Änderungen den localStorage-Cache-Key hochzählen!
+
+=== Warum?
+
+Die Website cached CSS im localStorage des Browsers. Ohne Key-Änderung sehen Besucher alte Styles.
+
+=== Wie?
+
+In *allen* HTML-Dateien im `<head>`-Bereich den Key ändern:
+
+[source,javascript]
+----
+var b="sourceMain2";  // → sourceMain3, sourceMain4, etc.
+----
+
+Aktueller Stand: `sourceMain2`
+
+=== Schnellbefehl
+
+[source,bash]
+----
+# Alle HTML-Dateien auf einmal ändern (z.B. von sourceMain2 auf sourceMain3):
+sed -i '' 's/sourceMain2/sourceMain3/g' *.html
+----
+
+== Lokale Vorschau
+
+[source,bash]
+----
+mvn tomcat7:run
+----
+
+Dann erreichbar unter: http://localhost:8080/praxis-wabner/
+
+== AWS Infrastruktur
+
+[cols="1,2",options="header"]
+|===
+|Ressource |Wert
+
+|S3 Bucket
+|`praxis-wabner.de`
+
+|CloudFront Distribution (.de)
+|`E1IBBL8X2H2ACM`
+
+|CloudFront Distribution (.com)
+|`E1C2LCDH8KT5OI`
+
+|Region
+|`eu-west-1`
+
+|IAM User
+|`deploy-praxis-wabner`
+|===
