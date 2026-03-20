@@ -36,7 +36,24 @@ mvn tomcat7:run
 ```
 Dann erreichbar unter: http://localhost:8080/praxis-wabner/
 
-**Deployment:** Upload to S3.
+**Deployment nach S3:**
+
+```bash
+# 1. Package erstellen und nach S3 hochladen
+mvn clean package -Paws && mvn exec:exec@s3-sync -Paws
+
+# 2. CloudFront Cache invalidieren
+mvn exec:exec@cloudfront-invalidate-de -Paws
+mvn exec:exec@cloudfront-invalidate-com -Paws
+```
+
+Voraussetzung: AWS-Profil `praxis-wabner` muss konfiguriert sein:
+```bash
+aws configure --profile praxis-wabner
+# AWS Access Key ID: (siehe KeyPass "deploy-praxis-wabner")
+# AWS Secret Access Key: (siehe KeyPass)
+# Region: eu-west-1
+```
 
 ## Site Structure
 
