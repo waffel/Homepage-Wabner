@@ -424,8 +424,12 @@ ul {
   text-decoration: none;
 }
 
-/* Mobile: Größere Touch-Targets */
+/* Mobile: Größere Touch-Targets und lesbare Schrift */
 @media (max-width: 767px) {
+  #footer_text {
+    font-size: 14px;
+  }
+
   #footer_text a {
     display: inline-block;
     padding: 12px 8px;
