@@ -41,6 +41,21 @@ test.describe('Navigation', () => {
       await hamburger.click();
       await expect(menue).toBeHidden();
     });
+
+    test('Desktop: Navigation ist immer sichtbar (kein Hamburger nötig)', async ({ page, oeffneSeite, istMobil }) => {
+      test.skip(istMobil, 'Nur für Desktop');
+
+      await oeffneSeite('/index2.html');
+
+      const menue = page.locator('#header ul');
+
+      // Auf Desktop: Menü muss direkt sichtbar sein
+      await expect(menue).toBeVisible();
+
+      // Alle Menüpunkte müssen klickbar sein
+      await expect(page.locator('#header ul a:has-text("Start")')).toBeVisible();
+      await expect(page.locator('#header ul a:has-text("Kosten")')).toBeVisible();
+    });
   });
 
   test.describe('Menüpunkte', () => {
