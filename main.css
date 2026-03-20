@@ -125,6 +125,9 @@ ul {
 }
 
 #logo-text2 {
+  position: absolute;
+  left: 0;
+  top: 0;
   padding-left: 112px;
   padding-top: 50px;
   color: var(--color-text-dark);
@@ -618,6 +621,14 @@ table {
 
   .nav-toggle {
     display: none;
+  }
+
+  #header nav {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    z-index: auto;
   }
 
   #header ul {
