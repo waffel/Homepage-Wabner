@@ -91,6 +91,17 @@ NOTE: Document all domains and aliases currently in WorkMail.
 | US only, requires video bundle, way too expensive
 |===
 
+=== Personal Gmail - OUT OF SCOPE
+
+Considered migrating personal @gmail.com account, but:
+
+* Gmail forwarding still routes through Google servers first (no privacy gain)
+* Cannot transfer @gmail.com address ownership
+* Would require notifying all contacts of new address
+* Effort not justified for marginal benefit
+
+Decision: Keep Gmail separate, focus on WorkMail domains only.
+
 === Mailbox.org - SELECTED
 
 * German company, servers in Germany
