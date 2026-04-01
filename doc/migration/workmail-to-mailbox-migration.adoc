@@ -1,0 +1,239 @@
+= AWS WorkMail to Mailbox.org Migration Plan
+:toc:
+:toc-title: Contents
+:sectnums:
+:icons: font
+
+== Overview
+
+AWS WorkMail ends support on *March 31, 2027*. This document outlines the migration to *Mailbox.org*.
+
+== Timeline
+
+[cols="1,3"]
+|===
+| Date | Milestone
+
+| April 2026 | Planning & Documentation
+| May 2026 | Test migration (1 user)
+| June 2026 | Full migration
+| July 2026 | Decommission WorkMail
+|===
+
+== Current Setup (AWS WorkMail)
+
+=== Users & Domains
+
+[cols="2,2,2"]
+|===
+| Domain | Users/Aliases | Real Person
+
+| planet-dark.de | admin@, waffel@, ... | Thomas, Partner
+| (other domains) | TBD | TBD
+|===
+
+NOTE: Document all domains and aliases currently in WorkMail.
+
+=== Email Clients in Use
+
+* Thunderbird (Ubuntu)
+* Android Mail App
+* Mac Mail
+* WorkMail Web Interface
+
+=== Current Monthly Cost
+
+~11 EUR total (includes WorkMail, Route 53, S3, CloudFront)
+
+== Target Setup (Mailbox.org)
+
+=== Plan Selection
+
+[cols="2,2,1"]
+|===
+| User | Plan | Cost/Month
+
+| User 1 | Standard (10GB) | 3.00 EUR
+| User 2 | Standard (10GB) | 3.00 EUR
+| *Total* | | *6.00 EUR*
+|===
+
+=== Features Included
+
+* IMAP/SMTP (Thunderbird, Mac Mail compatible)
+* CalDAV/CardDAV (Calendar & Contacts sync)
+* 50 aliases per custom domain
+* Web interface
+* German servers (GDPR compliant)
+
+== Migration Steps
+
+=== Phase 1: Preparation
+
+* [ ] List all WorkMail users and aliases
+* [ ] List all domains in Route 53 used for email
+* [ ] Export current mailboxes from WorkMail
+* [ ] Create Mailbox.org account
+
+=== Phase 2: Mailbox.org Setup
+
+* [ ] Create users in Mailbox.org
+* [ ] Add custom domains
+* [ ] Configure aliases to match current setup
+* [ ] Verify domain ownership (DNS TXT record)
+
+=== Phase 3: Test Migration (1 User)
+
+* [ ] Import mailbox data for test user
+* [ ] Configure Thunderbird with new IMAP settings
+* [ ] Configure Android with new settings
+* [ ] Configure Mac Mail with new settings
+* [ ] Test send/receive
+* [ ] Test calendar sync (if used)
+
+=== Phase 4: DNS Cutover
+
+* [ ] Update MX records in Route 53
+* [ ] Update SPF record
+* [ ] Add DKIM record
+* [ ] Remove old WorkMail DNS records
+* [ ] Wait for propagation (up to 48h)
+
+=== Phase 5: Full Migration
+
+* [ ] Migrate remaining users
+* [ ] Verify all clients working
+* [ ] Monitor for issues
+
+=== Phase 6: Cleanup
+
+* [ ] Delete WorkMail organization
+* [ ] Update documentation
+* [ ] Close this migration
+
+== DNS Changes Required
+
+=== Current (WorkMail) - TO BE REMOVED
+
+[source,dns]
+----
+MX    @    10  inbound-smtp.eu-central-1.amazonaws.com
+TXT   @    "v=spf1 include:amazonses.com ~all"
+CNAME autodiscover  autodiscover.mail.eu-central-1.awsapps.com
+----
+
+=== New (Mailbox.org) - TO BE ADDED
+
+[source,dns]
+----
+MX    @    10  mx1.mailbox.org
+MX    @    20  mx2.mailbox.org
+MX    @    30  mx3.mailbox.org
+
+TXT   @    "v=spf1 include:mailbox.org ~all"
+
+CNAME mbo0001._domainkey  mbo0001._domainkey.mailbox.org
+
+SRV   _autodiscover._tcp  0 0 443 mailbox.org
+----
+
+== Client Configuration
+
+=== Thunderbird / Mac Mail / Android
+
+[cols="1,2"]
+|===
+| Setting | Value
+
+2+h| Incoming (IMAP)
+| Server | imap.mailbox.org
+| Port | 993
+| Security | SSL/TLS
+
+2+h| Outgoing (SMTP)
+| Server | smtp.mailbox.org
+| Port | 465
+| Security | SSL/TLS
+| Authentication | Normal password
+|===
+
+=== CalDAV (Calendar)
+
+[source]
+----
+https://dav.mailbox.org/caldav/
+----
+
+=== CardDAV (Contacts)
+
+[source]
+----
+https://dav.mailbox.org/carddav/
+----
+
+== Rollback Plan
+
+If issues occur after DNS cutover:
+
+. Revert MX records to WorkMail
+. Wait for propagation
+. Investigate issues
+. Retry migration
+
+== Cost Comparison
+
+[cols="2,1,1"]
+|===
+| Item | Current (AWS) | After Migration
+
+| Email | ~4 EUR | 6 EUR
+| Route 53 | ~1 EUR | ~1 EUR (keep)
+| S3 + CloudFront | ~5 EUR | ~5 EUR (keep)
+| *Total* | *~10-11 EUR* | *~12 EUR*
+|===
+
+NOTE: Slight increase but better privacy, German hosting, simpler management.
+
+== References
+
+* https://docs.aws.amazon.com/workmail/latest/adminguide/workmail-end-of-support.html[AWS WorkMail End of Support]
+* https://docs.aws.amazon.com/workmail/latest/adminguide/mail-export.html[AWS Mailbox Export Guide]
+* https://mailbox.org/en/business[Mailbox.org Business]
+* https://kb.mailbox.org/en/private/e-mail-article/your-mailbox-org-mail-server-settings[Mailbox.org IMAP Setup]
+
+[appendix]
+== WorkMail Inventory
+
+TODO: Fill in before migration
+
+=== Domains
+
+[cols="2,1,3"]
+|===
+| Domain | Primary? | Notes
+
+| planet-dark.de | Yes |
+| | |
+|===
+
+=== Users & Aliases
+
+[cols="3,1,2,1"]
+|===
+| Email Address | Type | Real User | Migrate?
+
+| admin@planet-dark.de | Alias | Thomas | Yes
+| waffel@planet-dark.de | Alias | Partner | Yes
+| | | |
+|===
+
+[appendix]
+== Migration Log
+
+[cols="1,2,1,2"]
+|===
+| Date | Action | Result | Notes
+
+| 2026-04-01 | Created migration plan | Done |
+| | | |
+|===
