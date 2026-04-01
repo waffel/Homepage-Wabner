@@ -45,6 +45,62 @@ NOTE: Document all domains and aliases currently in WorkMail.
 
 ~11 EUR total (includes WorkMail, Route 53, S3, CloudFront)
 
+== Alternatives Considered
+
+=== Google Workspace - DECLINED
+
+[cols="1,2"]
+|===
+| Factor | Assessment
+
+| *Price*
+| €6.80/user/month = ~€14/month for 2 users (more than double Mailbox.org)
+
+| *Data Location*
+| US company with optional EU storage, but still US jurisdiction
+
+| *Privacy*
+| Scans emails for advertising and AI training purposes
+
+| *GDPR Compliance*
+| Technically compliant, but subject to US laws (CLOUD Act, FISA)
+
+| *Features*
+| Overkill - includes Drive, Docs, Meet which we don't need
+
+| *Verdict*
+| Too expensive, privacy concerns, unnecessary features
+|===
+
+=== AWS Recommended Alternatives
+
+[cols="2,1,3"]
+|===
+| Provider | Price | Why Not Chosen
+
+| Kopano Cloud
+| €2.99/user
+| Outlook/ActiveSync focused, unclear EU hosting, IMAP support uncertain
+
+| Zoho Workplace
+| €3-6/user
+| Indian company, good migration tools but Mailbox.org is simpler
+
+| Zoom Mail
+| $13.33+/user
+| US only, requires video bundle, way too expensive
+|===
+
+=== Mailbox.org - SELECTED
+
+* German company, servers in Germany
+* Full GDPR compliance under German law
+* No email scanning, privacy-focused
+* Open standards (IMAP/SMTP/CalDAV/CardDAV)
+* Perfect compatibility with Thunderbird, Mac Mail, Android
+* €3/user = €6/month total
+* BSI C5 and ISO 27001 certified
+
 == Target Setup (Mailbox.org)
 
 === Plan Selection
